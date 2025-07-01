@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form event querySelector</title>
+  </head>
+  <body>
+    <h3>form event querySelector</h3>
+    <div>
+      <form>
+        <label>이름:</label>
+        <input type="text" id="userName" placeholder="이름을 입력하세요" />
+        <span id="nameResult"></span>
+      </form>
+    </div>
+    <div>
+      <button class="colorBtn">빨강</button>
+      <button class="colorBtn">초록</button>
+      <button class="colorBtn">파랑</button>
+      <div class="colorDisplay">색상이 여기에 표시되요</div>
+    </div>
+    <div>
+      <!--  
+                attribute selector(속성 선택자) 예제 
+                button 의 type이 submit 인 버튼을 선택 
+        -->
+      <br /><br />
+      <form id="testForm" action="register.jsp">
+        <button type="button">button 일반버튼</button><br /><br />
+        <input type="text" placeholder="사용자명" />
+        <button type="submit">submit 전송버튼</button>
+      </form>
+    </div>
+    <script>
+      // 이벤트 자원(소스)을 자바스크립트 객체로 const 에 저장
+      const userNameInput = document.querySelector("#userName");
+      const nameResultElement = document.querySelector("#nameResult");
+      // 이벤트 자원에 특정 이벤트 발생시 동작할 이벤트 핸들러를 바인딩 (등록)
+      // 익명 함수 방식
+      // input event : 입력할 때마다 이벤트 발생
+      // userName 을 입력할 때마다 실시간으로 nameResult span 영역에 정보를 출력
+      userNameInput.addEventListener("input", function (event) {
+        // event.target : 이벤트가 발생한 DOM 요소
+        const inputValue = event.target.value;
+        nameResultElement.textContent = inputValue;
+      });
+      /************css selector***************/
+      // querySelectorAll() : 같은 클래스를 가진 모든 요소를 선택
+      const colorButtons = document.querySelectorAll(".colorBtn");
+      console.log(colorButtons.length);
+      const colorDisplay = document.querySelector(".colorDisplay");
+      // forEach 를 사용하여 각 버튼에 이벤트 리스너를 등록
+      // forEach 은 colorButtons 배열 요소의 수만큼 반복하면서
+      // callback function 을 실행한다(callback function 의 의미는 정의 이후 실행)
+      colorButtons.forEach(function (button, index) {
+        //버튼에 각각 이벤트 핸들러를 등록한다. 아래는 각 버튼에서 click 이벤트 발생하면
+        //두번째 매개변수인 익명함수가 클릭시 실행된다
+        button.addEventListener("click", function (event) {
+          const colorName = event.target.textContent;
+          //console.log(colorName);
+          let backgroundColor = "";
+          switch (colorName) {
+            case "빨강":
+              backgroundColor = "#ffebee";
+              break;
+            case "파랑":
+              backgroundColor = "#e3f2fd";
+              break;
+            case "초록":
+              backgroundColor = "#e8f5e8";
+              break;
+          } //switch
+          colorDisplay.textContent = "선택된 색상:" + colorName;
+          colorDisplay.style.backgroundColor = backgroundColor;
+        });
+      });
+      /**********attribute selector ([attribute])***********/
+      // attribute 로 selector : 특정 속성값을 가진 요소를 선택
+      const submitButton = document.querySelector("button[type='submit']");
+      submitButton.addEventListener("click", function (event) {
+        // 기본 동작(폼 제출)을 막음
+        // 특정 조건이 충족되지 않을 때 submit 버튼의 전송 동작을 막는다
+        event.preventDefault();
+        // 폼 내의 input 요소를 선택   ,  #testForm 아이디 하위의 input type text 요소를 선택 
+        const textInput = document.querySelector("#testForm input[type='text']");
+        console.log(textInput);
+        alert(textInput.value);
+      });
+    </script>
+  </body>
+</html>

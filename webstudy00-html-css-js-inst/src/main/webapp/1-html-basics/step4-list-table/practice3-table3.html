@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Table 실습</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse; /* 테두리 겹치게 설정  */
+      }
+      th {
+        background-color: rgb(181, 185, 185);
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>테이블 공부 예제</h1>
+    <h2>분기별 부서 실적표</h2>
+    <table>
+        <caption>2025년 분기별 부서 설적 (단위: 백만원)</caption>
+        <thead>
+            <tr>
+                <th rowspan="2" scope="col">부서</th>
+                <!-- 웹접근성 scope="colgroup" 열그룹을 대표  -->
+                <th colspan="4" scope="colgroup">2025년 분기별 실적</th>
+                <th rowspan="2" scope="col">연간 합계</th>
+            </tr>
+            <tr>
+                <th scope="col">1분기</th>
+                <th scope="col">2분기</th>
+                <th scope="col">3분기</th>
+                <th scope="col">4분기</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">영업팀</th>
+                <td>150</td>
+                <td>180</td>
+                <td>200</td>
+                <td>170</td>
+                <td><strong>700</strong></td>
+            </tr>
+            <tr>
+                <th scope="row">개발팀</th>
+                <td>120</td>
+                <td>140</td>
+                <td>160</td>
+                <td>145</td>
+                <td><strong>565</strong></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th scope="row">총합계</th>
+                <td><strong>350</strong></td>
+                <td><strong>415</strong></td>
+                <td><strong>470</strong></td>
+                <td><strong>400</strong></td>
+                <td><strong>1,635</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+  </body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+@charset "UTF-8";
+body{
+    color: #333;/* 기본 글자색을 진한 회색으로 */
+    padding: 30px; /* 전체 페이지에 20px 여백 */    
+}
+h1{
+    color: #2c3e50; /* 진한 파란 회색 */
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+h2 {
+    color: #34495e;
+    font-size: 20px;
+    border-left: 4px solid #3498db;
+    padding-left: 10px;
+}
+.intro{
+    font-size: 16px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+.highlight{
+    background-color: #f1c40f;
+    color:#2c3e50;
+    padding: 10px 15px; /* 위아래 10px 좌우 15px 내부 여백  */
+    border-radius: 5px; /* 모서리 둥글게 */
+    font-weight: bold;
+    display: inline-block;/* 내일 공부 예정   */
+}
+/*
+    ID 선택자 : # , Class 선택자 : . 
+*/
+#main-content{
+    background-color: #ecf0f1;
+    border: 2px solid #bdc3c7;
+    border-radius: 8px;/* 모서리를 둥글게  */
+    padding: 30px;
+    margin: 20px 0;/* 상하 20px 좌우 외부 여백 제거  */
+}
+/* 자식 요소 선택자 : 클래스 menu 하위 요소 li로 접근    */
+.menu li{
+    list-style: none;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: #95a5a6;
+    border-radius: 4px;
+    color:white
+}
+/*
+    menu class 요소 하위의 active class 요소들을 선택
+*/
+.menu .active{
+    background-color: #e74c3c;
+    font-weight: bold;
+}
+
+
+
+

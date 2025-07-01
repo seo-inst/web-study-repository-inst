@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event handling : form checkbox</title>
+</head>
+<body>
+    <h3>event handling : form checkbox</h3>
+    <form action="form-processing.jsp" id="menuForm">
+        <!--
+             form 을 이용한 서버 전송을 위해서 name 은 필수적
+        -->
+        <input type="text" id="nickName" name="nickName" placeholder="별명" required>     
+        <br><br>
+        <!-- 반드시 하나의 메뉴 이상을 주문해야 전송이 되도록 javascript 로 처리한다   -->
+        <input type="checkbox" name="food" value="팥빙수">팥빙수<br>
+        <input type="checkbox" name="food" value="냉면">냉면<br>
+        <input type="checkbox" name="food" value="떡볶이">떡볶이<br>
+        <br><br>
+        <button type="submit">주문하기</button>
+    </form>
+    <script>
+        const menuForm = document.querySelector("#menuForm");
+        // name이 food 인 checkbox 3개가 배열로 반환된다 
+        const foodBoxs = document.querySelectorAll("input[name='food']");
+        menuForm.addEventListener("submit",function(event){
+            // 음식 메뉴를 하나 이상 선택했을 때 서버로 전송하게 하고 
+            // 하나도 선택하지 않았을 때는 메뉴를 하나 이상 선택하셔야 합니다 alert 후 
+            // 전송시키지 않는다 
+            // event.preventDefault();// 전송 되는 기본 속성을 막는다
+            //console.log(foodBoxs[1].checked);
+            /**/
+                let result = false;
+                for(let i = 0; i<foodBoxs.length;i++){
+                    if(foodBoxs[i].checked){ 
+                        result = true;
+                        break;
+                    }
+                }
+                if(!result){
+                    alert("메뉴를 하나 이상 선택하셔야 합니다");
+                    event.preventDefault(); 
+                    return;
+                }
+            
+        });
+        
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

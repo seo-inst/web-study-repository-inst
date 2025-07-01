@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DataType</title>
+    <!-- css -->
+</head>
+<body>
+    <h1 id="title">반가워요 자바스크립트</h1>
+    <button type="button" onclick="changeTitle()">제목변경</button>
+    <!-- javascript -->
+    <script>
+        // javascript <script> 태그 내에 작성 , HTML 로드 후 실행 (body 최하단에 있으므로)
+        // 1. 변수 선언 
+        var info = "안녕하세요 var 변수 입니다"; // ES5 기존에 많이 사용되는 변수 방식 
+        info = "var 변수 재할당";
+        console.log(info);
+        let info2 = "안녕하세요 let 변수 입니다";// ES6 이후에 권장되는 변수 방식 
+        info2 = "let 변수 재할당";  
+        console.log(info2);
+        // 2. 함수 선언 
+        function changeTitle(){
+            //alert("안녕 JS");
+            // DOM 요소(element) 선택 : HTML 요소를 javascript로 가져오기 
+            // document : 웹페이지 전체를 나타내는 객체 
+            // getElementById(id) : id로 html 요소를 가져오는 메서드 
+            let titleElement = document.getElementById("title");
+            // textContent : 요소 안의 텍스트를 변경하거나 읽는 속성 (java의 setter,getter 역할)
+            alert(titleElement.textContent);// getter 
+            titleElement.textContent = "javascript event 처리로 제목 변경";// setter
+        }  
+        // 3. 데이터 타입 ( java 보다 유연함 )
+        let number = 27; // 숫자 (java int)
+        let number2 = 3.14;// 실수형 
+        let isActive = false;// let 변수로 숫자 , 문자열 , boolean 이 다 가능 
+        let items = ["치킨","콜라","맥주"]; // 자바스크립트 배열 또한 let 으로 선언 
+        let message = "불금";
+        // 타입 확인 
+        console.log(typeof number2);// number type
+        console.log(typeof message);// string type 
+        console.log(typeof isActive);// boolean type 
+        console.log(typeof items);// boolean type 
+        // javascript for loop 
+        for(let i=0;i<items.length;i++){
+            console.log(items[i]);
+        }
+    </script>
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

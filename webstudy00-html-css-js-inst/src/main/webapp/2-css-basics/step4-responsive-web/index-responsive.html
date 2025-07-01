@@ -1,0 +1,142 @@
+<!--
+    html 5 선언부 
+-->
+<!DOCTYPE html>
+<!--
+   lang="ko" 웹접근성 , 검색엔진 최적화 (SEO), 번역 기능에 도움  
+-->
+<html lang="ko">
+<!--
+     head   현 Web Document 의 메타 데이터를 기술하는 영역 
+-->
+<head>
+<!--
+    charset="UTF-8"  다국어 지원 
+-->
+    <meta charset="UTF-8">
+    <!-- 
+        viewport : 브라우저에서 웹페이지가 보이는 영역  
+        content="width=device-width ,initial-scale=1.0"  
+        : device-width : 실제 화면 너비에 맞춰 페이지 너비 설정 
+        : initial-scale=1.0 : 페이지 로드시 확대/축소 비율을 100% 설정
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+            SEO : 검색 엔진 최적화에 중요한 요소가 TITLE 
+            TITLE 은 브라우저 탭, 북마크 , 검색 엔진 결과에 표시 
+    -->
+    <title>반응형 웹 디자인 학습</title>
+    <!--
+        외부 CSS 연결 : 권장 , 구조(HTML)와 표현(CSS)의 분리 원칙 
+    -->
+    <link rel="stylesheet" href="../css/style5.css">
+</head>
+<!--
+    웹페이지의 컨텐트와 구조를 기술하는 영역 
+-->
+<body>
+    <!-- 
+        header 머릿글 
+        모바일 : 로고 + 햄버거 메뉴 
+        태블릿 : 로고 + 간소화된 메뉴 
+        데스크탑 : 로고 + 전체 네비게이션 메뉴 
+    -->
+    <header class="header">
+        <!-- 
+                컨테이너 패턴 - 반응형 레이아웃 기본
+                예 ) 부트스트랩(css framework) : .container 
+         -->
+        <div class="container">          
+            <div class="logo">MyWebsite</div>            
+            <!-- 데스크톱 네비게이션: 768px 이상에서만 보임 -->
+            <!-- CSS에서 @media (max-width: 768px)로 모바일에서는 숨김 처리 -->
+            <nav class="nav">
+                <a href="#">홈</a>
+                <a href="#">소개</a>
+                <a href="#">서비스</a>
+                <a href="#">연락처</a>
+            </nav>
+            
+            <!-- 모바일 메뉴 버튼: 768px 이하에서만 보임 -->
+            <!-- CSS에서 기본적으로 display: none, 모바일에서만 display: block -->
+            <!-- ☰ 햄버거 메뉴 아이콘 (유니코드 문자) -->
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- main : 웹 페이지의 핵심 컨텐트   -->
+    <main class="main">
+        <div class="container">
+            <!-- 히어로 섹션: 첫 인상을 결정하는 중요한 영역 -->
+            <!-- 화면 크기별로 폰트 크기와 패딩이 다르게 적용됨 -->
+            <section class="hero">
+                <!-- 반응형 타이포그래피: 화면 크기에 따라 폰트 크기 변경 -->
+                <!-- 데스크톱: 3rem → 태블릿: 2rem → 모바일: 1.8rem -->
+                <h1>반응형 웹 디자인</h1>
+                <p>화면 크기에 따라 자동으로 적응하는 웹사이트</p>
+                
+                <!-- 모바일에서는 패딩과 폰트 크기가 작아짐 -->
+                <button class="cta-button">시작하기</button>
+            </section>
+
+            <!-- Grid 레이아웃 적용  -->
+            <section class="features">
+                <h2>주요 특징</h2>
+                
+                <!--  반응형 그리드: -->
+                <!-- 화면 크기에 따라 열 개수가 자동으로 조정됨 -->
+                <!-- 큰 화면: 4열 → 태블릿: 2-3열 → 모바일: 1열 -->
+                <div class="feature-grid">
+                    <!-- 각 카드는 최소 250px, 공간이 있으면 균등 분배 -->
+                    <div class="feature-card">
+                        <!-- 이모지 아이콘: 별도 이미지 파일 없이 아이콘 효과 -->
+                        <div class="feature-icon">📱</div>
+                        <h3>모바일 최적화</h3>
+                        <p>모든 모바일 기기에서 완벽하게 동작합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3>데스크톱 호환</h3>
+                        <p>큰 화면에서도 아름다운 레이아웃을 제공합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>빠른 로딩</h3>
+                        <p>최적화된 이미지와 코드로 빠르게 로딩됩니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>유연한 디자인</h3>
+                        <p>다양한 화면 크기에 자동으로 적응합니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!--  이미지 갤러리: aspect-ratio를 활용한 정사각형 그리드 -->
+            <section class="gallery">
+                <h2>갤러리</h2>
+                
+                <!--  갤러리 그리드: 반응형 이미지 갤러리의 표준 패턴 -->
+                <!-- 큰 화면: 6열 → 태블릿: 자동 조정 → 모바일: 2열 -->
+                <div class="gallery-grid">
+                    <!-- aspect-ratio: 1로 정사각형 유지 -->
+                    <!-- 실제 프로젝트에서는 <img> 태그 사용 -->
+                    <div class="gallery-item">이미지 1</div>
+                    <div class="gallery-item">이미지 2</div>
+                    <div class="gallery-item">이미지 3</div>
+                    <div class="gallery-item">이미지 4</div>
+                    <div class="gallery-item">이미지 5</div>
+                    <div class="gallery-item">이미지 6</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!--  푸터: 저작권 정보, 모든 화면에서 동일하게 표시 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MyWebsite. All rights reserved.</p>
+        </div>
+    </footer>    
+</body>
+</html>

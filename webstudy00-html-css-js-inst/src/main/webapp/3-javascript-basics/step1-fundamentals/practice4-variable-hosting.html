@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javascript 변수와 호이스팅</title>
+  </head>
+  <body>
+    <h1>자바스크립트 변수와 호이스팅</h1>
+    <h2>
+      ECMA 2015 : var 중복선언 가능 , function level scope <br />
+      ECMA 2016 : let 중복 선언 불가 , block level scope
+    </h2>
+    <button type="button" onclick="varTest(7)">varTestBtn</button><br />
+    <button type="button" onclick="letTest(8)">letTestBtn</button>
+    <script>
+      /*
+        Javascript 의 Hoisting 이란? 
+        자바스크립트 변수 선언과 함수 선언이 코드 실행 전에 맨 위로 끌어 올려진 것 처럼 동작
+        자바스크립트 엔진(해석기==인터프리터)이 코드를 해석하는 방식 
+        var 변수 호이스팅(ES5) : 자신의 Scope 맨 위로 선언이 호이스팅 되고 초기화는 undefined 으로 됨 
+
+        기존의 var 변수 형식은 코드 예측 가능성을 떨어뜨리고 잠재적인 버그를 유발 
+
+        let , const 호이스팅(ES6) : 초기화 없이 선언만 호이스팅 , 
+        TDZ (Temporal Dead Zone 일시적 사각지대) 를 만들어 이 기간동안 해당 변수에 접근하려고 하면 Reference Error 가 발생 
+    */
+      function varTest(num) {
+        // 선언 하기 전에 사용 가능
+        alert(a); // 호이스팅에 의해 undefined 으로 초기화 되었기 때문에 undefined 로 출력
+        if (num > 1) {
+          var a = 999; // var 로 변수를 선언  function level scope
+        }
+        alert(a); // ok : var 변수는 사용 가능 function level scope => why? hoisting 특성 때문
+      }
+      // alert(a);// var => function level scope
+      function letTest(num) {
+        // alert(b); // var 와 다르게 error 
+        if (num > 0) {
+          let b = 1;
+        }
+       // alert(b); //error let 은 block level scope
+          console.log(b);
+       // 선언된 자신의 block 내에서만 사용 가능 
+      }
+    </script>
+  </body>
+</html>

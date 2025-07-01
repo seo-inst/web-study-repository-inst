@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javascript 연산자</title>
+  </head>
+  <body>
+    <h1>자바스크립트 연산자</h1>
+    <script>
+      let name1 = "아이유";
+      console.log(name1.length); //길이3
+      let name2 = "아이유 ";
+      console.log(name2.length); //길이4
+      console.log(name1.length == name2.length); // 여백으로 인해 false
+      console.log(name1.length == name2.trim().length); //trim() 함수로 양여백 제거하여 true
+      let age1 = 28;
+      let age2 = "28";
+      console.log(age1 == age2); // true : 강제 형변환 (문자열을 숫자로 변환한 후 비교)
+      console.log(age1 === age2); // false : 엄격한 비교시 사용 ( 타입까지 비교 )
+      let age3 = parseInt(age2);
+      console.log(age3 === age1);// 정수형으로 변환 
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TemplateLiteral,forEach,map study</title>
+<style>
+    div{
+        background-color: azure;
+    }
+</style>
+</head>
+<body>
+    <h3>TemplateLiteral,forEach,map study</h3>
+    <div id="output"></div>
+    <script>
+        /****1. Template Literal 백틱 기초******/
+        const userName = "손흥민";
+        const age = 33;
+        const message = "안녕하세요 제 이름은 "+userName+"이고 나이는 "+age+"세 입니다";
+        console.log(message);
+        // 백틱 `````` 사용 ${변수명} 형태로 변수를 문자열 안에 직접 삽입 가능 
+        const message2 = `안녕하세요 제 이름은 ${userName}이고 나이는 ${age}세입니다`;
+        console.log(message2);
+        /*******2. forEach 연습***************/
+        const foods = ['체리','치킨','맥주'];
+        // 기존 for 문 
+        for(let i = 0;i<foods.length;i++){
+            console.log(`${i + 1}번쨰 음식: ${foods[i]}`);
+        }
+        // forEach 문 
+        foods.forEach(function(food,index){
+            console.log(`${index+1}번째 과일: ${food}`);
+        });
+        /************3. map: 각 요소를 변환하여 새로운 배열을 반환****************/
+        // 숫자 배열 준비 
+        const numbers = [1,2,3];
+        let doubledWithForEach = [];// 새로운 배열 생성 
+        numbers.forEach(function(number){
+            doubledWithForEach.push(number*2);// 새로운 배열에 요소를 추가 
+        });
+        console.log("forEach로 2배 만들기",doubledWithForEach);
+        console.log("numbers 원본배열",numbers);
+        // map : 각 요소를 변환하여 새로운 배열을 반환 
+        const doubleWithMap = numbers.map(function(number){
+            return number * 2;
+        });
+        console.log('map으로 두배 만들기:'+doubleWithMap);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

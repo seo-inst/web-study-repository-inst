@@ -1,0 +1,85 @@
+/* Grid의 기본 동작 원리 이해 */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.section {
+  margin-bottom: 40px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+  border-bottom: 2px solid #4caf50;
+  padding-bottom: 10px;
+}
+/*
+    Grid 예제 : 기본 3 x 2 격자 
+*/
+.grid-container {
+  display: grid; /* 핵심포인트 : grid 컨테이너 생성  */
+  grid-template-columns: 1fr 1fr 1fr; /* 3개 열, 동일한 비율  */
+  grid-template-rows: 100px 100px;
+  /*2개 행 각각 100px*/
+  gap: 10px; /* 격자(아이템) 간 간격 */
+  padding: 10px;
+  margin: 10px 0;
+}
+.grid-item {
+  background-color: #4caf50;
+  color: white;
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  border-radius: 4px;
+  font-weight: bold;
+}
+/*  Grid 예제 2 : 복잡도가 있는 그리드 레이아웃 연습 (헤더 , 사이드바, 메인 , 푸터)     */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* 200px 1fr => 사이드바 고정폭(200px), 메인 유동폭 (１ｆｒ）  */
+  grid-template-rows: 60px 1fr 50px; /* 60px 1fr 50px => 헤더  60px 메인 유동폭 푸터 50px   */
+  grid-template-areas: "header header" "sidebar main" "footer footer";
+  height: 400px;
+  gap: 10px;
+  padding: 10px;
+  background-color: #fce4ec;
+}
+.header {
+  grid-area: header; /* 지정된 영역에 배치 */
+  background-color: #e91e63;
+}
+.sidebar {
+  grid-area: sidebar;
+  background-color: #ad1457;
+}
+.main {
+  grid-area: main;
+  background-color: #f06292;
+}
+.footer {
+  grid-area: footer;
+  background-color: #880e4f;
+}
+.layout-item {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-weight: bold;
+}
+/* 반응형 웹을 위한 미디어 쿼리 맛보기 : 모바일에서 Grid 가 Flexbox 처럼 동작  */
+@media (max-width: 768px) {
+  .grid-layout {
+    grid-template-columns: 1fr; /* 모바일: 한 열로 변경  */
+    grid-template-areas: "header" "main" "sidebar" "footer";
+  }
+}

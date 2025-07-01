@@ -1,0 +1,50 @@
+<!--
+        **CSS Grid**:  2차원 레이아웃 시스템 (행과 열 동시 제어)                            
+                   복잡한 레이아웃을 간단하게 구현
+                   웹사이트의 전체 구조 설계에 최적
+                   바둑판처럼 격자무늬로 배치하는 것 (2차원)
+                   전체 페이지 레이아웃, 갤러리, 대시보드
+-->
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid 기본 공부</title>
+    <link rel="stylesheet" href="../css/style4-2.css" />
+  </head>
+  <body>
+    <h1>Grid 기본</h1>
+    <div class="section">
+      <h2>Grid 예제</h2>
+      <!--
+            fr : fraction(비율) 의 약자 , 1fr 은 사용 가능한 공간의 1등분 
+        -->
+      <h3>기본 3 * 2 격자 (fr 단위 사용)</h3>
+      <div class="grid-container">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>
+      </div>
+      <p><strong>fr</strong> 1fr 은 사용가능한 공간을 1만큼 차지(비율 단위)</p>
+      <h2>2. 실제 웹사이트 레이아웃(grid-template-areas 활용)</h2>
+      <div class="grid-layout">
+        <header class="header layout-item">헤더</header>
+        <aside class="sidebar layout-item">사이드바</aside>
+        <main class="main layout-item">메인 컨텐트</main>
+        <footer class="footer layout-item">푸터</footer>
+      </div>
+      <p><strong>grid-template-areas</strong>로 영역 이름을 지정하면 직관적인 레이아웃 가능</p>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+

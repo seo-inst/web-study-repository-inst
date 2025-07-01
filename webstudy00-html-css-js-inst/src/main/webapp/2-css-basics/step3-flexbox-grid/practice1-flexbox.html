@@ -1,0 +1,86 @@
+<!--
+        CSS 3 Flexbox : 1차원 레이아웃 , 컨테이너 내의 아이템들을 효율적으로 배치 , 정렬하는 1차원 레이아웃 방법          
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox 레이아웃</title>
+    <link rel="stylesheet" href="../css/style4-1.css">
+</head>
+<body>
+    <h1>Flexbox 레이아웃 ( 1차원 정렬 )</h1>
+    <!-- 플렉스 컨테이너 -->
+     <section>
+        <h2>Flexbox 기본</h2>
+        <div class="flex-container">
+        <div class="flex-item">아이템 1</div>
+        <div class="flex-item">아이템 2</div>
+        <div class="flex-item">아이템 3</div>
+        </div>
+     </section>
+     <section>
+        <h2>Flex Direction</h2><!-- flex-direction 아이템 배치 방향   -->
+        <h3>가로 방향(row)</h3>
+        <div class="flex-container row">
+        <div class="flex-item">아이템 1</div>
+        <div class="flex-item">아이템 2</div>
+        <div class="flex-item">아이템 3</div>
+        </div>
+        <h3>세로 방향(column)</h3>
+        <div class="flex-container column">
+        <div class="flex-item">아이템 1</div>
+        <div class="flex-item">아이템 2</div>
+        <div class="flex-item">아이템 3</div>
+        </div>
+     </section>
+     <!-- justify-content : Flex 다양한 방식의 정렬   -->
+      <section>
+        <h2>Flex Justify content</h2>
+        <h3>flex-start(시작점 정렬 : 기본)</h3>
+        <div class="flex-container justify-start">
+        <div class="flex-item">A</div>
+        <div class="flex-item">B</div>
+        <div class="flex-item">C</div>
+        </div>     
+        <h3>center(가운데 정렬)</h3>
+        <div class="flex-container justify-center">
+        <div class="flex-item">A</div>
+        <div class="flex-item">B</div>
+        <div class="flex-item">C</div>
+        </div>     
+        <h3>space-between(양끝 정렬)</h3>
+        <div class="flex-container justify-between">
+        <div class="flex-item">A</div>
+        <div class="flex-item">B</div>
+        <div class="flex-item">C</div>
+        </div>  
+        <h3>space-around(균등 분배)</h3>
+        <div class="flex-container justify-around">
+        <div class="flex-item">A</div>
+        <div class="flex-item">B</div>
+        <div class="flex-item">C</div>
+        </div> 
+     </section>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

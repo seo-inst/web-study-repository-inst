@@ -1,0 +1,23 @@
+@charset "UTF-8";
+body{
+    padding: 20px;
+    background-color: aliceblue;
+    margin: 0;
+}
+.main-title{
+    color:blue;
+    text-align: center;
+    border-bottom: 2px solid;
+    padding-bottom: 20px;
+}
+.intro{
+    font-size: 19px;
+    line-height: 2;
+    color: blueviolet;
+}
+.box{
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 50px;
+}

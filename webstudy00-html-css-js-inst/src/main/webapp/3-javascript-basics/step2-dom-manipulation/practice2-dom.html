@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM 제어</title>
+    <!--
+         javascript DOM : Document Object Model 
+         웹 Document 의 Elements 요소들을 제어하기 위한 자바스크립트 프로그래밍 인터페이스 
+    -->
+  </head>
+  <body>
+    <form>
+      <input type="text" id="nick" /><button
+        type="button"
+        onclick="showValue()"
+      >
+        테스트
+      </button>
+    </form>
+    <script>
+      document.getElementById("nick").focus();  
+      // 테스트 버튼을 클릭하면 text 입력 양식에 사용자가 입력한 값을 alert() 으로 표현
+      function showValue() {
+        let nickElement = document.getElementById("nick");
+        if (nickElement.value === "") {
+          alert("텍스트 필드에 정보를 입력하세요");
+          //포커스를 준다
+          nickElement.focus();
+          return; // 함수 실행을 종료
+        }
+        //console.log(nickElement.value);// value 프로퍼티에 get
+        alert(nickElement.value);
+        //출력 후 텍스트 박스 초기화
+        nickElement.value = ""; // value 프로퍼티에 set
+      }
+    </script>
+  </body>
+</html>

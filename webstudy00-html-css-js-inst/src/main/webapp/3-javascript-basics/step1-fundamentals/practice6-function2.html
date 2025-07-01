@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript 다양한 함수 표현식</title>
+</head>
+<body>
+    <h1>javascript 다양한 함수 표현식(Function Expression)</h1>
+    <script>
+       //1. 기본 함수 선언문 function declaration  
+        function test1(){
+            return "불금";
+        }
+        console.log(test1());
+       // const add 에 익명 함수 객체를 할당
+       //2. 함수 표현식 function expression  : 변수(or 상수)에 할당되는 익명함수   
+       let add = function(a,b){ // 익명 함수
+            return a+b;
+       }
+       console.log(add(4,3));
+       // 함수 표현식 
+       const multiply = function(a,b){
+            return a*b;
+       }
+       console.log(multiply(3,7));
+       // 3. 화살표 함수 arrow function 
+       const add2 = (a,b) => {
+            return a + b;
+       }
+       console.log(add2(3,4));
+       const add3 = (a,b) => a+b;
+       console.log(add3(7,4));
+    </script>
+</body>
+</html>

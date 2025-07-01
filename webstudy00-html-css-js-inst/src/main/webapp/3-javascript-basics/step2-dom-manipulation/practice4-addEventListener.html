@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javascript event study</title>
+    <style>
+      div {
+        background-color: antiquewhite;
+      }
+      span {
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>javascript event addEventListener 함수</h1>
+    <div id="divTest">div 영역입니다</div>
+    <!-- block 속성 : width 100% 꽉 채우는 속성 -->
+    <br /><br />
+    <!-- 
+            <button type="button" onclick="test()">div 테스트</button>
+            위의 방식을 아래의 이벤트 처리 방식으로 변경 ( querySelector() 와 addEventListener() )
+      -->
+    <button type="button" id="divTestBtn">div 테스트</button>
+    <br /><br />
+    <span id="spanTest">span 영역입니다</span>
+    <button type="button" id="spanTestBtn">span 테스트</button>
+    <!--
+           const spanTestElement = ... ;  querySelector() 
+           const spanTestButton = ... ; 
+           // 화살표 함수 arrow function 
+           const changeSpanContent= 화살표 함수      평화로운 화요일입니다 
+           // 이벤트 등록    
+           // addEventListener 
+    -->
+    <hr />
+    <h3>innerHTML vs textContent 비교</h3>
+    <div id="htmlTest">HTML 테스트 영역</div>
+    <div id="textTest">Text 테스트 영역</div>
+    <button type="button" id="compareBtn">
+      innerHTML과 textContent 차이 보기
+    </button>
+
+    <!-- 인라인 속성 : 컨텐트 사이즈 만큼 영역 차지  -->
+    <script>
+      // querySelector 함수를 이용해 요소 객체를 리턴받는다
+      /*
+            기존 방식 : document.getElementById("divTest");
+            다른 새로운 방식 : document.querySelector("#divTest"); // # 은 아이디를 의미 
+        */
+      // DOM 요소 선택
+      const divTestElement = document.querySelector("#divTest");
+      const divTestButton = document.querySelector("#divTestBtn");
+      // div 제어 - arrow function (화살표 함수)
+      const changeDivContent = () => {
+        console.log("현재 div 내용:", divTestElement.innerHTML); //참고: form 요소는 value
+        // 기존 div 내용을 변경
+        divTestElement.innerHTML = "<strong>즐거운 화요일입니다</strong>";
+      };
+      // 이벤트 등록 : addEventListener로 이벤트 등록
+      // <button onclick="함수호출"> 의 역할을 아래에서 한다
+      divTestButton.addEventListener("click", changeDivContent);
+      /*******************span 영역 이벤트 처리**************************/
+      // 이벤트 소스(자원) 선택
+      const spanTestElement = document.querySelector("#spanTest");
+      const spanTestButton = document.querySelector("#spanTestBtn");
+      // 이벤트 발생시 실행될 함수를 정의 ( 익명 함수 스타일로 )
+      const changeSpanContent = () => {
+        spanTestElement.innerHTML = "평화로운 화요일입니다";
+      };
+      //이벤트 등록
+      spanTestButton.addEventListener("click", changeSpanContent);
+      /************innerHTML 과 textContent 비교 *******************/
+      /*
+            1. 이벤트 자원(소스) 객체를 const 에 할당 : querySelector() 
+            2. 이벤트 핸들러 정의 ( 이벤트 발생시 실행될 함수(행위)를 정의)
+            3. 이벤트 바인딩 ( 이벤트 발생시 실행될 함수를 요소 객체에 등록 ) : addEventListener() 
+      */
+      //  1. 이벤트 자원(소스) 객체를 const 에 할당 : querySelector()
+      const htmlTestElement = document.querySelector("#htmlTest");
+      const textTestElement = document.querySelector("#textTest");
+      const compareButton = document.querySelector("#compareBtn");
+      // 2. 이벤트 핸들러(처리 담당자) 정의 ( 이벤트 발생시 실행될 함수(행위)를 정의)
+      //   innerHTML 과 textContext 속성(property) 을 비교
+      const compareHTMLvsText = () => {
+        // 같은 HTML 태그가 포함된 내용을 설정
+        const content = "<h4>제목</h4><p>내용:<strong>중요 정보</strong></p>";
+        // 두 요소에 content 를 할당해본다
+        htmlTestElement.innerHTML = content;
+        textTestElement.textContent = content; // 차이를 비교해본다
+      };
+      //3. event binding 이벤트 소스(자원:버튼,div,span...)에 특정 이벤트(click)가 발생할 때 실행될 함수(이벤트 핸들러)를 등록
+      // 이벤트 : compareButton 버튼을 눌렀을 때(click event)  compareHTMLvsText 이벤트 핸들러가 동작해야 한다
+      compareButton.addEventListener("click", compareHTMLvsText);
+    </script>
+  </body>
+</html>

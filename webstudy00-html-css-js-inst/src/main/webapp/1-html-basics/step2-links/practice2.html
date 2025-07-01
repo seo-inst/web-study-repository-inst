@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>하이퍼 링크 연습예제 2</title>
+  </head>
+  <body bgcolor="yellow">
+    <h1>페이지 2 경로의 종류</h1>
+    <h2>상대경로(Relative Path)</h2>
+    <p>현재 파일 기준으로 상대적인 위치를 나타내는 방법</p>
+    <!-- 
+        같은 폴더에 있는 파일 ./ 현재 폴더를 의미 
+        ./ 를 권장하는 이유 : 의도 명확히 , 절대경로와 구분 , 가독성 , 스트립트 환경에서 유리 
+    -->
+   <p> <a href="./practice1.html">practice2 html 로 이동하기</a></p>
+   <!-- 현재 위치 기준으로 pages 디렉토리로 진입해 page1.html 이동  -->
+   <p><a href="./pages/page1.html">pages 폴더안의 page1.html 로 이동</a></p>
+  </body>
+</html>

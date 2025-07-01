@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자바 스크립트 함수</title>
+  </head>
+  <body>
+    <h1>자바스크립트 함수 연습 1</h1>
+    <button type="button" onclick="sayHello()">funtionTest1</button><br /><br />
+    <button type="button" onclick="greetUser('손흥민',7)">functionTest2</button
+    ><br /><br />
+    <button type="button" onclick="alert(testReturn(5,7))">
+      functionTest3
+    </button>
+    <script>
+      function sayHello() {
+        alert("say hello");
+      }
+      function greetUser(name, backNumber) {
+        alert(name + "선수 등번호 " + backNumber);
+      }
+      function testReturn(num1, num2) {
+        return num1 + num2;
+      }
+    </script>
+  </body>
+</html>

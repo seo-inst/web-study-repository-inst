@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON Basic</title>
+  </head>
+  <body>
+    <!--
+        JSON : JavaScript Object Notation 자바스크립트 객체 표기법 
+    -->
+    <h1>JSON Object 와 JSON Array</h1>
+    <script>
+      // 자바스크립트 객체 생성, 변수에 접근, 할당
+      let student = {
+        name: "손흥민",
+        age: 32,
+        major: "축구",
+        isGraduated: false,
+      };
+      console.log(student); // javascript object
+      console.log(student.name); // name을 get
+      student.isGraduated = true; // istGraduated 를 set
+      console.log(student.isGraduated); // 다시 get
+      // 자바스크립트 배열
+      let foods = ["맥주", "순대", "소주", "팥빙수"];
+      console.log(foods);
+      for (let i = 0; i < foods.length; i++) {
+        console.log(foods[i]);
+      }
+    </script>
+  </body>
+</html>

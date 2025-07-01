@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML TABLE 공부</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse; /* 테두리 겹치게 설정  */
+        }
+        th{
+            background-color: rgb(195, 229, 229);
+        }
+        th,td{
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>테이블 태그 연습</h1>
+    <h2>월별 매출 현황</h2>
+    <table>
+        <!-- thead 테이블 헤더 그룹 -->
+        <thead>
+            <tr>
+                <th>월</th>
+                <th>목표(만원)</th>
+                <th>실제(만원)</th>
+                <th>달성률</th>
+            </tr>
+        </thead>
+        <!-- tbody:테이블 본문 그룹 -->
+        <tbody>
+            <tr>
+                <td>1월</td>
+                <td>500</td>
+                <td>520</td>
+                <td>104%</td>
+            </tr>
+            <tr>
+                <td>2월</td>
+                <td>600</td>
+                <td>500</td>
+                <td>97%</td>
+            </tr>
+            <tr>
+                <td>3월</td>
+                <td>700</td>
+                <td>750</td>
+                <td>107%</td>
+            </tr>
+        </tbody>
+        <!-- tfoot : 테이블 푸터 그룹 (합계나 요약 정보)  -->
+        <tfoot>
+            <tr>
+                <th>합계</th>
+                <td>1,800</td>
+                <td>1,850</td>
+                <td>103%</td>
+            </tr>
+        </tfoot>
+    </table>    
+</body>
+</html>
+
+
+
+
+
+

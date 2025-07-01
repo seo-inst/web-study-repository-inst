@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Event Study</title>
+  </head>
+  <body>
+    <form>
+      <!-- javascript key event 를 이용해 enter key 눌렀다가 뗄 때 텍스트를 이동 시키게 한다     -->
+      <input type="text" id="orgTxt" onkeyup="enterKeyMoveTxt()" />
+      <button type="button" onclick="moveTxt()">이동</button>
+      <input type="text" id="destTxt" />
+    </form>
+    <script>
+      // 버튼 클릭했을 때 실행하는 함수
+      function moveTxt() {
+        let orgTxtElement = document.getElementById("orgTxt");
+        let destTxtElement = document.getElementById("destTxt");
+        destTxtElement.value = orgTxtElement.value;
+        orgTxtElement.value = "";
+        orgTxtElement.focus();
+      }
+      // enter key 눌렀다가 뗄 때 실행되는 함수
+      function enterKeyMoveTxt() {
+       // alert(event.keyCode); // enter key 의 keyCode 는 13 번 
+       if(event.keyCode == 13){
+            moveTxt();
+       }
+      }
+    </script>
+  </body>
+</html>

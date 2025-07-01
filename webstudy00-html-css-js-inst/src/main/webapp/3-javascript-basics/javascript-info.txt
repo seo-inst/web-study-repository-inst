@@ -1,0 +1,71 @@
+**JavaScript**
+- 기본 개념 
+HTML : Web document 컨텐트 담당 
+CSS  : 웹 디자인 스타일 담당
+JavaScript : Web document 의 행위 담당 
+
+**JavaScript**
+- 웹 문서의 동적 행위를 담당하는 ECMAScript 표준 스크립트 언어 
+- HTML + CSS + JavaScript 가 웹 3요소 
+
+**ECMAScript**
+ECMA 인터내셔널이 제정한 JavaScript 표준 명세 
+ECMAScript 표준을 준수하는 스크립트 언어 -> JavaScript 
+ECMA 인터내셔널 : 정보 통신 표준을 제정하는 표준화 기구 
+ES5(ECMA5, 2009) : 변수 선언 var -> function level scope 등 
+ES6(ECMA6, 2015) : 변수 선언 let , const(상수) -> Block level (자바의 지역변수와 scope가 유사) , arrow function(화살표 함수),
+구조 분해 할당 , Template Literal , asyn await 등이 있다 
+
+**변수와 스코프**
+- var vs let vs const 
+var (ES5) : 중복 선언 가능 , function level scope -> 호이스팅(hosting) undefined 초기화 
+let (ES6) : 중복 선언 불가 , block level scope , 재할당 가능 -> 호이스팅(hosting) : TDZ(Temporal Dead Zone: 호이스팅 ~ 초기화 지점 코드 영역)  초기화 X , 초기화 없이 사용시 Reference Error 발생 
+const (ES6) : 중복 선언 불가 , block level scope , 재할당 불가 -> 상수 -> 호이스팅(hosting) : TDZ(Temporal Dead Zone: 호이스팅 ~ 초기화 지점 코드 영역) 초기화 X , 초기화 없이 사용시 Reference Error 발생
+
+**Scope(스코프)**
+변수에 접근할 수 있는 유효한 범위 
+Global scope : 전역에서 접근 가능 
+Function scope : 함수 내부에서만 접근 가능 
+Block scope : 블럭 ({ }) 내부에서만 접근 가능 
+
+**Hosting(호이스팅)**
+변수와 함수 선언이 스코프의 최상단으로 끌어올려지는 현상 
+var 와 function  선언문에서 발생 
+
+**DOM(Document Object Model)**
+- Javascript에서 HTML Web Document(웹문서)의 요소를 제어하기 위한 프로그래밍 인터페이스 
+- 트리 구조로 문서 표현 , 동적 제어 가능 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javascript review</title>
+    <!-- css 영역-->
+  </head>
+  <body>
+    javascript 복습 <br /><br />
+    <button type="button" onclick="test1()">변수 테스트1</button><br />
+    <button type="button" onclick="test2()">변수 테스트2</button><br />
+    <button type="button" onclick="test3()">변수 테스트3</button><br />
+
+    <!-- javascript 영역 -->
+    <script>
+      // var 변수
+      // var (ES5) : 중복 선언 가능 , function level scope -> 호이스팅(hosting) undefined 초기화
+      function test1() {
+        //alert(1);
+        // ES 5 (ecma2015) 이전 변수 var
+        console.log(name); // hoisting 되어 error 안남, hoisting 은 자바스크립트 엔진이
+        // 실행 전 사용되는 변수를 끌어올려 자신의 function scope 상단에 배치, var 경우 undefined 로 초기화
+        var name = "아이유";
+        var name = "손흥민"; // 동일한 변수명으로 var 는 중복 선언 가능
+      }
+      //  let 변수 테스트
+      //  let (ES6) : 중복 선언 불가 , block level scope , 재할당 가능 -> 호이스팅(hosting) : TDZ(Temporal Dead Zone: 호이스팅 ~ 초기화 지점 코드 영역)  초기화 X , 초기화 없이 사용시 Reference Error 발생
+      function test2() {
+        /* practice1-review.html:29 Uncaught ReferenceError: Cannot access 'nick' before initialization  아래 log 출력시 발생 -> 호이스팅은 되고 초기화 되지 않음 
+        호이스팅에서 초기화 영역까지 (Temporal Dead Zone: 호이스팅 ~ 초기화 지점 코드 영역) 이고 이 시점에 접근하면 ReferenceError 가 발생 
+        */
+        //console.log(nick);
+        let nick = "bts";
+        nick = "black pink"; // let 은 재할당 가능
+        console.log(nick);
+        // let nick = "bts"; // 중복 선언 불가 ( var 는 가능 )
+        if (nick.length === 3) {
+          let price = 100; // let 은 block level scope ( var 는 function level scope )
+        }
+
+        // console.log(price);// error
+      }
+      /*
+        const (ES6) : 중복 선언 불가 , block level scope , 재할당 불가 -> 상수 -> 호이스팅(hosting) : TDZ(Temporal Dead Zone: 호이스팅 ~ 초기화 지점 코드 영역) 초기화 X , 초기화 없이 사용시 Reference Error 발생
+      */
+      function test3() {
+        //console.log(productId); // 호이스팅 되지만 TDZ 영역에 접근하여 Reference Error 발생
+        const productId = "javaking";
+        // const productId="javaking2";// error 중복 선언 불가
+        //let 과 const 차이점 -> const 는 재할당 불가 ( 상수 )
+        productId = "starjava"; // error 재할당 불가
+        console.log(productId); // Uncaught TypeError: Assignment to constant variable.
+      }
+      console.log("hello javascript");
+    </script>
+  </body>
+</html>

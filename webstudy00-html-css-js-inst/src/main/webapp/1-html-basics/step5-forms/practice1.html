@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML 기본 폼 구조</title>
+  </head>
+  <body>
+    <h1>회원 가입 폼</h1>
+    <!--
+        HTML -> 정적인 특성 , 쌍방향 소통을 위한 form tag 
+        action : 폼 데이터를 처리할 url (처리할 서버 프로그램의 위치)
+        method : get , post , put , delete , update 등 이후 공부예정 => 데이터 전송 방식  
+    -->
+    <form action="register.jsp" method="get">
+      <!-- label: 입력필드의 설명 (for에 입력양식의 id를 연결)  -->
+      <label for="username">사용자명:</label>
+      <!--
+            id : 레이블과 연결하기 위한 고유 식별자, 이후 css , javascript에서 많이 활용
+            name : action 에서 지정한 서버 프로그램으로 전송할 때 사용되는 변수명 
+                   register.jsp?username=java
+      -->
+      <!-- required : 필수 입력 필드로 지정   -->
+      <input type="text" id="username" name="username" required />
+      <br /><br />
+      <!-- 비밀번호 입력 -->
+      <label for="password">비밀번호:</label>
+      <input type="password" id="password" name="password" required />
+      <br /><br />
+      <label for="email">이메일</label>
+      <!-- email : 이메일 형식 검증 -->
+      <input type="email" id="email" name="email" required />
+      <br /><br />
+      <!-- type="submit" : 폼데이터를 서버로 전송하는 버튼    -->
+      <input type="submit" value="회원가입" />
+      <!-- type="reset" : 폼의 모든 입력을 초기화   -->
+      <input type="reset" value="다시 작성" />
+    </form>
+  </body>
+</html>

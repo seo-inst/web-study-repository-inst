@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom 제어 연습</title>
+</head>
+<body>
+    <h3>addEventListener 와 querySelector를 이용한 DOM 요소 제어</h3>
+    <form>
+        <input type="text" id="orgTxt">
+        <button type="button" id="moveBtn">move</button>
+        <input type="text" id="destTxt">
+    </form>
+    <script>
+        // 이벤트 자원을 객체로 가져옴 
+        const orgTxtElement = document.querySelector("#orgTxt");
+        const destTxtElement = document.querySelector("#destTxt");
+        const moveButton = document.querySelector("#moveBtn");
+
+        orgTxtElement.focus();
+
+        const moveTxt = () => {
+            destTxtElement.value = orgTxtElement.value;
+            orgTxtElement.value = "";
+            orgTxtElement.focus();
+        }
+        moveButton.addEventListener("click",moveTxt);
+        /********enter key 눌렀을 때 이동 ********/
+        // 이벤트 발생시 동작할 함수 정의 
+        const handleKeyup = (event) => {
+            console.log(event.keyCode);//키코드
+            console.log(event.key);//눌린 키 
+            console.log(event.type);// 이벤트 타입
+            console.log(event.target);// 이벤트 발생 요소 
+            if(event.key =="Enter"){
+                moveTxt();
+            }
+        }
+        orgTxtElement.addEventListener("keyup",handleKeyup);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,142 @@
+/* flexbox 공부 */
+body {
+	font-family: 'Malgun Gothic', Arial, sans-serif;
+	line-height: 1.6;
+	color: #333;
+	background-color: #f8f9fa;
+	margin: 0;
+	padding: 20px;
+}
+
+h1, h2, h3 {
+	color: #2c3e50;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+h2 {
+	border-left: 4px solid #3498db;
+	padding-left: 10px;
+	margin-top: 40px;
+}
+
+h3 {
+	color: #34495e;
+	margin: 20px 0 10px 0;
+}
+
+/* 섹션별 구분을 위한 스타일 */
+section {
+	margin-bottom: 50px;
+	padding: 20px;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+/* 기본 플렉스 컨테이너 스타일 */
+.flex-container {
+	display: block; /* 안써주면 기본값이 block */
+	/* display: flex; 플렉스 컨테이너로 설정 */
+	background-color: #ecf0f1; /* 컨테이너 배경색 */
+	border: 2px solid #bdc3c7; /* 테두리로 컨테이너 영역 표시 */
+	border-radius: 8px; /* 둥근 모서리 */
+	padding: 15px; /* 안쪽 여백 */
+	margin: 10px 0; /* 위아래 여백 */
+	min-height: 80px; /* 최소 높이 설정 */
+}
+
+/* 기본 플렉스 아이템 스타일 */
+.flex-item {
+	background-color: #3498db; /* 파란색 배경 */
+	color: white; /* 흰색 글자 */
+	padding: 15px 20px; /* 안쪽 여백 */
+	margin: 5px; /* 아이템 간 여백 */
+	border-radius: 6px; /* 둥근 모서리 */
+	text-align: center; /* 가운데 정렬 */
+	font-weight: bold; /* 굵은 글씨 */
+	min-width: 80px; /* 최소 너비 */
+}
+
+/* 실용적인 레이아웃 샘플 */
+
+/* 헤더 레이아웃 */
+.header {
+  display: flex;  /*플렉스 컨테이너 */
+  justify-content: space-between;  /*로고와 네비게이션을 양 끝에 배치 */
+  align-items: center; /* 세로 가운데 정렬 */
+  background-color: #2c3e50; /* 진한 파란 회색 배경 */
+  color: white; /* 흰색 글자 */
+  padding: 15px 30px; /* 안쪽 여백 */
+  border-radius: 8px; /* 둥근 모서리 */
+  margin-bottom: 20px; /* 아래쪽 여백 */
+}
+
+.logo {
+  font-size: 24px; /* 로고 크기 */
+  font-weight: bold; /* 굵은 글씨 */
+}
+
+.nav {
+  display: flex; /* 네비게이션도 플렉스 컨테이너 */
+  gap: 20px; /* 링크 사이 간격 */
+}
+
+.nav a {
+  color: white; /* 흰색 링크 */
+  text-decoration: none; /* 밑줄 제거 */
+  padding: 8px 15px; /* 안쪽 여백 */
+  border-radius: 4px; /* 둥근 모서리 */
+  transition: background-color 0.3s ease; /* 배경색 변화 애니메이션 */
+}
+
+.nav a:hover {
+  background-color: #34495e; /* 마우스 오버 시 배경색 변화 */
+}
+
+/* 카드 레이아웃 */
+.card-container {
+  display: flex; /* 플렉스 컨테이너 */
+  gap: 20px; /* 카드 사이 간격 */
+  flex-wrap: wrap; /* 화면이 좁으면 다음 줄로 이동 */
+}
+
+.card {
+  flex: 1; /* 남은 공간을 균등하게 분배 , 세 카드는 남은 공간을 1:1:1의 비율로 균등하게 나눠 가집니다 */
+  min-width: 250px; /* 최소 너비 설정 */
+  background-color: white; /* 흰색 배경 */
+  border: 1px solid #ddd; /* 연한 회색 테두리 */
+  border-radius: 8px; /* 둥근 모서리 */
+  padding: 20px; /* 안쪽 여백 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  /* 카드 내부도 플렉스로 구성 */
+  display: flex;
+  flex-direction: column; /* 세로 방향 배치 */
+}
+
+.card h3 {
+  margin-top: 0; /* 위쪽 여백 제거 */
+  color: #2c3e50; /* 진한 파란 회색 */
+}
+
+.card p {
+  /* 	flex-grow: 1;            남은 공간을 차지해서 버튼을 아래로 밀어냄 */
+  color: #666; /* 회색 글자 */
+}
+
+.card button {
+  background-color: #3498db; /* 파란색 배경 */
+  color: white; /* 흰색 글자 */
+  border: none; /* 테두리 제거 */
+  padding: 10px 20px; /* 안쪽 여백 */
+  border-radius: 6px; /* 둥근 모서리 */
+  cursor: pointer; /* 포인터 커서 */
+  font-weight: bold; /* 굵은 글씨 */
+  transition: background-color 0.3s ease; /* 배경색 변화 애니메이션 */
+}
+
+.card button:hover {
+  background-color: #2980b9; /* 마우스 오버 시 더 진한 파란색 */
+}

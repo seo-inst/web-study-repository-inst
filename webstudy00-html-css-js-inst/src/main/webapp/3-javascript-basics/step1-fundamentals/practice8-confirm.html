@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javascript 내장 객체</title>
+  </head>
+  <body>
+    <button type="button" onclick="enterMovie()">confirmTest</button>
+    <script>
+      function enterMovie() {
+        let result = confirm("영화를 관람하시겠습니까?"); // confirm 함수의 리턴값 true or false 
+        if(result){
+            alert("입장을 환영합니다 즐거운 관람되세요");
+           location.href = "https://www.netflix.com/kr/";
+        }else{
+            alert("다음에 또 봐요");
+        }
+      }
+    </script>
+  </body>
+</html>

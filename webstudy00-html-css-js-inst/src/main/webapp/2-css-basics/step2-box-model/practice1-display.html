@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display 속성 예제</title>
+    <link rel="stylesheet" href="../css/style3.css" />
+  </head>
+  <body>
+    <div class="display-demo">
+      <h1>Display 속성 테스트</h1>
+      <h2>블록 요소</h2>
+      <!-- 
+         블록 요소 : 행을 다 차지하는 속성, 항상 새로운 라인에서 시작, 가로폭 100% 차지   
+         사용 예 : 화면 전체 레이아웃 
+         -->
+      <div class="block-demo">블록요소1</div>
+      <div class="block-demo">블록요소2</div>
+      <div class="block-demo">블록요소3</div>
+      <!--
+            인라인 inline 요소
+            <span> : 인라인 요소 
+            텍스트 흐름에 한 줄에 나란히 배치 , 내용의 크기만큼만 공간을 차지 
+            특징 : width,  height 적용안됨 , 컨텐트 크기만큼 사이즈 지정된다 
+            사용 사례 : 링크 , 이미지 ,텍스트 내 강조내용 등      
+        -->
+      <br />
+      <span class="inline-demo">인라인 요소 1</span>
+      <span class="inline-demo">인라인 요소 2</span>
+      <span class="inline-demo">인라인 요소 3</span>
+      <br /><br />
+      <!--
+            인라인 블록 요소 -> css display:inline-block
+            : 가로 배치되면서 정확한 크기 제어가 가능   
+            사용 예 -> 네비게이션 메뉴 버튼,카드형 리스트, 아이콘과 텍스트가 함께 있는 버튼 등에서 자주 사용됨. 
+            Flexbox(1차원 레이아웃) 와 Grid(2차원 레이아웃) 와 같은 기능.   
+            
+            질문 :왜 여백이 생김? 
+             공백문자 렌더링 , 줄바꿈, 스페이스 , 탭 등은 
+            브라우저에서 하나의 공백 문자로 해석되어 화면에 표시 
+            
+            Flexbox(1차원 레이아웃) 와 Grid(2차원 레이아웃)와 같은 
+            최근 기술을 많이 사용하고 공백에 대한 문제가 해결됨 
+
+      -->
+      <div class="inline-block-demo">인라인 블록 1</div>
+      <div class="inline-block-demo">인라인 블록 2</div>
+      <div class="inline-block-demo">인라인 블록 3</div>
+    
+    </div>
+  </body>
+</html>

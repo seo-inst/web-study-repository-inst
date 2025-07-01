@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML 다양한 입력 양식</title>
+  </head>
+  <body>
+    <h1>폼</h1>
+    <form>
+      <!--
+            fieldset : 책의 챕터와 같은 역할 
+            UI/UX => 시각적 그룹화 , 가독성 향상 
+            접근성 향상 (웹접근성) => 스크린 리더가 읽어줌 
+            의미론적 그룹화(Semantic Grouping) => CSS,Javascript에서
+            배송정보 폼요소와 결제정보 폼요소의 디자인 스타일을 각각 제어할 수 있고 동작 또한 fieldset 기준으로 각각 제어가능 
+
+            form 의 요소들을 논리적으로 묶어주는 컨테이너 
+            예) 온라인 쇼핑몰 주문 페이지에서 "배송정보" "결제정보" "추가옵션" 등을 fieldset 으로 구분하여 사용자가 단계적으로
+            정보를 입력할 수 있도록 한다 
+        -->
+      <fieldset>
+        <!--
+                  legend 는 fieldset의 제목 역할을 함 
+                  legend 의 사전적 의미는 지도 도표의 기호설명표 
+                  웹접근성 , 검색엔진최적화(SEO)   
+            -->
+        <legend>개인 정보</legend>
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" required />
+        <br /><br />
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email" required />
+        <br /><br />
+        <label for="agree">개인정보 수집 동의</label>
+        <input type="checkbox" id="agree" name="agree" value="check" />
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>주소 정보</legend>
+        <label for="address">주소:</label>
+        <input type="text" id="address" name="address" /><br />
+        <label for="city">도시:</label>
+        <input type="text" id="city" name="city" />
+      </fieldset>
+      <br />
+      <!-- 
+                button 의 기능은 서버 전송과 이벤트 발생 
+                <input type="submit" > : 서버 전송 
+                <input type="button" > : 이벤트 발생 
+
+                <button>제출</button> : submit 이 기본 
+
+                button tag 는 type을 명시하면 불필요한 에러를 감소할 수 있다 
+        -->
+      <button type="submit">제출</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 
+          SEO(Search Engine Optimization) 검색엔진 최적화
+          검색엔진 결과에 클릭 가능한 제목으로 사용됨 
+      -->
+    <title>연락처 폼 - 실습 답안</title>
+  </head>
+  <body>
+    <h1>고객 연락처 폼</h1>
+    <!-- SEO : 검색 엔진에 파악하는 가장 중요 요소  -->
+    <!--
+         form : 클라이언트의 정보를 서버에 전송시 사용되는 태그
+         action : 처리할 서버 프로그램 url 
+         method : 서버 전송 방식 
+    -->
+    <form action="contact.jsp" method="post">
+      <fieldset>
+        <legend>기본 정보</legend>
+        <!-- legend 웹접근성을 높인다 -->
+        <p>
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" required />
+        </p>
+        <p>
+          <!--  
+                label 의 for 는  입력양식의 id를 명시해서 연결 
+                label 의 장점은 웹접근성을 높이기 위한 목적
+                (입력양식에 접근하기 쉽게 한다 - 레이블 영역만 클릭해도 입력할 수 있도록 해당 입력양식에 커서 이동됨
+                스크린 리더가 해당 입력폼을 설명할 수 있도록 정보를 제공한다 
+                )
+            -->
+          <label for="email">이메일</label><br />
+          <input type="email" id="email" name="email" required />
+        </p>
+        <p><label for="phone">전화번호</label><br />
+        <input type="tel" id="phone" name="phone" 
+        placeholder="010-1234-1234" required>
+        </p>
+      </fieldset>
+      <fieldset>
+        <legend>문의 유형</legend>
+        <!--
+            div : 컨테이너 역할을 하는 태그 
+                  시각적 정렬과 스타일링을 위해 사용 
+        -->
+        <div>
+        <!--
+                type:"radio" 여러 라디오 중 택일 
+                checked : 페이지 로딩 시 기본으로 선택된 상태    
+         -->    
+            <input type="radio" id="general" name="inquery_type" checked>
+            <label for="general">일반 문의</label>
+        </div>
+         <div>
+        <!--
+                type:"radio" 여러 라디오 중 택일                    
+         -->    
+            <input type="radio" id="technical" name="inquery_type" >
+            <label for="technical">기술 지원</label>
+        </div>
+         <div>
+        <!--
+                type:"radio" 여러 라디오 중 택일                    
+         -->    
+            <input type="radio" id="complaint" name="inquery_type" >
+            <label for="complaint">불만 사항</label>
+        </div>
+      </fieldset>
+      <!-- 문의 내용 -->
+      <fieldset>
+        <legend>문의 내용</legend>
+        <p>
+            <label for="message">문의 내용</label>
+            <!--
+                textarea : 여러 줄 텍스트 입력이 가능한 태그 
+                rows="5" : 화면에 표시될 줄 수 (세로 크기)
+                cols="50" : 화면에 표시될 문자 수 (가로 크기)
+                => 실제로는 CSS로 화면 조정하는 것을 권장 
+            -->
+            <textarea id="message" rows="5" cols="50" placeholder="문의하실 내용을 자세히 작성해주세요" required></textarea>
+        </p>
+        <p>
+            <label for="attachment">파일 첨부 (선택사항)</label>
+            <input type="file" id="attachment" name="attachment">
+        </p>
+      </fieldset> 
+      <br />
+      <p>
+        <!-- 
+            submit: form 의 action에 명시된 서버프로그램으로 폼 데이터를 전송   -->
+        <button type="submit">문의 전송</button>
+        <button type="reset">다시 작성</button>
+      </p>
+    </form>
+  </body>
+</html>
