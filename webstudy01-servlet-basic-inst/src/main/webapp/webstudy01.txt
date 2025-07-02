@@ -1,0 +1,45 @@
+**webstudy01**
+HTTP : HyperText Transfer Protocol 
+HTTPS : HTTP Secure -> 보안 http protocol , 암호화된 버전
+
+Web Server : HTTP 프로토콜에 의거해 HTML(html,css,javascript) 문서document 를 서비스하는 서버 
+				      웹 클라이언트인 브라우저에 정적인 컨텐트( + 동적인 컨텐트 )  이상을 서비스 하는 서버 
+WAS : Web Application Server ( Web Server(ex-apache) + Web Container(ex-tomcat) )
+		    데이터베이스 서버 및 다른 서버와 연동하여 
+		    다양한 비즈니스 로직을 처리하고, 
+		    동적인 컨텐트를 클라이언트에게 서비스하는 웹 어플리케이션 서버 
+		    
+자바 웹 어플리케이션 개발 환경 설정 
+	1.  apache tomcat/conf/server.xml 에서 port 변경 ( 기본 8080 인데 다른 프로그램(예 - 오라클 ) 과 충돌이
+	   날 수 있으므로 8888 로 변경 ) 
+	   get 요청 방식 한글처리(다국어 처리)를 위해 URIEncoding="utf-8" 을 추가 설정함 
+	2. apache tomcat/conf/context.xml 에서  reloadable="true" 를 설정하여  java class 가 변경되어 다시
+	   컴파일 될 때 톰캣 서버에 자동 배포 되도록 설정 
+	   
+- 웹 클라이언트 브라우저 동작 원리 
+   웹 어플리케이션 서버에 요청request을 하여 응답response 받으면  HTTP Response Message 를 해석한다
+   HTML 을 읽는다 -> HTML을 파싱한다 -> DOM Tree를 생성한다 -> Render 트리가 생성(css 와 결합)  
+   -> 브라우저에 표시된다  	      
+
+ Client Side : html , css , javascript ( Server Side 도 가능 ) 
+ Server Side : Servlet / JSP -> Spring 
+ 
+ 
+
+
+
+
+
+
+
+
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		     
