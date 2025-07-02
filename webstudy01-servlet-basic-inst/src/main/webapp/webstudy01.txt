@@ -8,6 +8,12 @@ WAS : Web Application Server ( Web Server(ex-apache) + Web Container(ex-tomcat) 
 		    데이터베이스 서버 및 다른 서버와 연동하여 
 		    다양한 비즈니스 로직을 처리하고, 
 		    동적인 컨텐트를 클라이언트에게 서비스하는 웹 어플리케이션 서버 
+* Web Container :  서블릿 컨테이너라고도 함 
+	                          -서블릿 라이프 사이클 관리 ( 생성 , 초기화 , 서비스 , 소멸을 제어 ) 
+	                          -요청 처리를 위한 스레드 관리 
+	                          -JSP 를 HttpServlet 하위 서블릿 클래스로 생성 -> 실행  ( JSP 엔진으로서의 역할 )                        
+	                          					   
+		    
 		    
 자바 웹 어플리케이션 개발 환경 설정 
 	1.  apache tomcat/conf/server.xml 에서 port 변경 ( 기본 8080 인데 다른 프로그램(예 - 오라클 ) 과 충돌이
@@ -24,9 +30,56 @@ WAS : Web Application Server ( Web Server(ex-apache) + Web Container(ex-tomcat) 
  Client Side : html , css , javascript ( Server Side 도 가능 ) 
  Server Side : Servlet / JSP -> Spring 
  
+ **Servlet 기본 개념**
+ Servlet :  java web programming 을 위한 기술 ( Server + Let ) 
+ 			     Web Container( or Servlet Container ) 위에서 개발, 실행됨 
+ 			     MVC 의 Controller 역할을 담당 
+ 			     ( 참고 - MVC 는 Design Pattern (설계 패턴) , SpringMVC 는 기술 명칭 ) 
+ 			     Model :  비즈니스 로직과 데이터 액세스 로직을 담당 ( java ( java beans : Dao, Service..) ) 
+ 			     View : 클라이언트 응답을 전담 ( jsp or thymeleaf or json .. ) 
+ 			     Controller : 제어자 역할 , 요청을 분석하여 Model 과 연동 , 연동 결과를 View 에 공유해 응답하게 함
+ 			     				    ( java 기반 Servlet  ex) Spring or SpringBoot 의 DispatcherServlet )  
+
+- Http Request Method 
+	 get 방식 : 정보 조회용  , url  에 정보가 노출 , 전송 용량에 제한  -> 서블릿의 doGet 메서드가 실행 
+	 post 방식 : 정보 전송용 , url 에 정보가 노출 되지 않는다 , 전송 용량 제한 x 
+	 				   http request message body 부분에 저장되어 전송	 	-> 서블릿의 doPost 메서드가 실행 			 
+ 
+ - 웹 어플리케이션 설정 정보 ( 메타 데이터 )
+   1)  web module version 3 이상 , 현재는 5이상 (가장 높은 버전은 6 ) 
+        에서 지원하는 Annotation 기반 웹 설정 
+        @WebServlet(url-pattern) : 클라이언트에서 해당 서블릿을 실행하기 위한
+        											  url 정보 
+        											  웹 컨테이너 ( or WAS ) 는 서버 시작 시점에
+        											  해당 웹 어플리케이션 설정 정보를 로드하여 
+        											  서비스 한다 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 
+****서블릿 공부시 재사용할 코드*****
 
+// 응답시 컨텐트 타입을 설정 , 브라우저에서 지금 응답은 HTML 문서야 라고 
+		// 메세지를 보내기 위함 
+		response.setContentType("text/html;charset=UTF-8");
+		// HTML 을 브라우저로 전송하기 위한 출력 스트림 
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>Servlet Study</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<h3>Hello Servlet</h3>");
+		out.println("</body>");
+		out.println("</html>");
+		out.close();
 
 
 

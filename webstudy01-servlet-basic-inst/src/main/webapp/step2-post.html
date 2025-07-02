@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>http post request method study</title>
+</head>
+<body>
+	<h3>http post request method study</h3>
+	<!-- 
+		method : http request method 방식 
+					  post  방식 ->  정보 전송용 , http request message body 에 저장되어 전송 , url 노출 x , 대용량 가능 
+ 		action : 처리할 서버 프로그램 url ( uniform resource location ) 
+ -->
+	<form action="PostServlet" method="post">
+		<!-- 
+		서버 전송을 위해서는 name 속성이 반드시 필요하다 
+ -->
+		<input type="text" name="nick" placeholder="별명을 입력하세요"
+			required="required"><br>		
+		<input type="email" name="email" required="required"
+		 placeholder="이메일을 입력하세요"> <br>
+		<button type="submit">등록</button>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
