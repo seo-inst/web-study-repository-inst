@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step1 request method</title>
+</head>
+<body>
+	<h2>Http Request Method Study</h2>
+	<form method="get" action="RequestMethodServlet">
+	<input type="search" name="searchKeyword" placeholder="검색어 입력하세요" 
+	required="required"><button type="submit">검색</button>
+	</form>
+	<!-- 
+			method  가 get 방식이므로  서블릿 프로그램의 doGet() 실행될 것을 예상할 수 있다 
+			action 이  RequestMethodServlet 이므로 서블릿 프로그램의 url 이 RequestMethodServlet
+			임을 알 수 있다 
+			서버 측 RequestMethodServlet은 doGet 메서드에서 request 의 파라미터 정보를 얻기 위해
+			getParameter 메서드를 실행할 것이다. getParameter(name) ==> searchKeyword 
+	 -->
+	 <hr>
+	 <form method="post" action="RequestMethodServlet">
+	 <label for="foodName">음식명</label>
+	 <input type="text" id="foodName" name="foodName" ><br>
+	 <input type="radio" name="tasteType" value="매운맛">매운맛<br>
+	 <input type="radio" name="tasteType" value="중간맛">중간맛<br>
+	 <input type="radio" name="tasteType" value="싱거운맛">싱거운맛<br>
+	 <button type="submit">주문</button>
+	 </form>
+	 <!-- 
+	 		  post 방식 요청에 대한 응답 
+	 		  
+	 		  음식명 : 진라면 
+	 		  맛타입 : 매운맛 
+	  -->
+</body>
+</html>
+
+
+
+
+
+
+

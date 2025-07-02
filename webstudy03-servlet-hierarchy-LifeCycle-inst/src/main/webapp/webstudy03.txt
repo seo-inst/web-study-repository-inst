@@ -1,0 +1,159 @@
+**webstudy01**
+HTTP : HyperText Transfer Protocol 
+HTTPS : HTTP Secure -> 보안 http protocol , 암호화된 버전
+
+Web Server : HTTP 프로토콜에 의거해 HTML(html,css,javascript) 문서document 를 서비스하는 서버 
+				      웹 클라이언트인 브라우저에 정적인 컨텐트( + 동적인 컨텐트 )  이상을 서비스 하는 서버 
+WAS : Web Application Server ( Web Server(ex-apache) + Web Container(ex-tomcat) )
+		    데이터베이스 서버 및 다른 서버와 연동하여 
+		    다양한 비즈니스 로직을 처리하고, 
+		    동적인 컨텐트를 클라이언트에게 서비스하는 웹 어플리케이션 서버 
+* Web Container :  서블릿 컨테이너라고도 함 
+	                          -서블릿 라이프 사이클 관리 ( 생성 , 초기화 , 서비스 , 소멸을 제어 ) 
+	                          -요청 처리를 위한 스레드 관리 
+	                          -JSP 를 HttpServlet 하위 서블릿 클래스로 생성 -> 실행  ( JSP 엔진으로서의 역할 )                        
+	                          					   
+		    
+		    
+자바 웹 어플리케이션 개발 환경 설정 
+	1.  apache tomcat/conf/server.xml 에서 port 변경 ( 기본 8080 인데 다른 프로그램(예 - 오라클 ) 과 충돌이
+	   날 수 있으므로 8888 로 변경 ) 
+	   get 요청 방식 한글처리(다국어 처리)를 위해 URIEncoding="utf-8" 을 추가 설정함 
+	2. apache tomcat/conf/context.xml 에서  reloadable="true" 를 설정하여  java class 가 변경되어 다시
+	   컴파일 될 때 톰캣 서버에 자동 배포 되도록 설정 
+	   
+- 웹 클라이언트 브라우저 동작 원리 
+   웹 어플리케이션 서버에 요청request을 하여 응답response 받으면  HTTP Response Message 를 해석한다
+   HTML 을 읽는다 -> HTML을 파싱한다 -> DOM Tree를 생성한다 -> Render 트리가 생성(css 와 결합)  
+   -> 브라우저에 표시된다  	      
+
+ Client Side : html , css , javascript ( Server Side 도 가능 ) 
+ Server Side : Servlet / JSP -> Spring 
+ 
+ **Servlet 기본 개념**
+ Servlet :  java web programming 을 위한 기술 ( Server + Let ) 
+ 			     Web Container( or Servlet Container ) 위에서 개발, 실행됨 
+ 			     MVC 의 Controller 역할을 담당 
+ 			     ( 참고 - MVC 는 Design Pattern (설계 패턴) , SpringMVC 는 기술 명칭 ) 
+ 			     Model :  비즈니스 로직과 데이터 액세스 로직을 담당 ( java ( java beans : Dao, Service..) ) 
+ 			     View : 클라이언트 응답을 전담 ( jsp or thymeleaf or json .. ) 
+ 			     Controller : 제어자 역할 , 요청을 분석하여 Model 과 연동 , 연동 결과를 View 에 공유해 응답하게 함
+ 			     				    ( java 기반 Servlet  ex) Spring or SpringBoot 의 DispatcherServlet )  
+
+- Http Request Method 
+	 get 방식 : 정보 조회용  , url  에 정보가 노출 , 전송 용량에 제한  -> 서블릿의 doGet 메서드가 실행 
+	 post 방식 : 정보 전송용 , url 에 정보가 노출 되지 않는다 , 전송 용량 제한 x 
+	 				   http request message body 부분에 저장되어 전송	 	-> 서블릿의 doPost 메서드가 실행 			 
+ 
+ - 웹 어플리케이션 설정 정보 ( 메타 데이터 )
+   1)  web module version 3 이상 , 현재는 5이상 (가장 높은 버전은 6 ) 
+        에서 지원하는 Annotation 기반 웹 설정 
+        @WebServlet(url-pattern) : 클라이언트에서 해당 서블릿을 실행하기 위한
+        											  url 정보 
+        											  웹 컨테이너 ( or WAS ) 는 서버 시작 시점에
+        											  해당 웹 어플리케이션 설정 정보를 로드하여 
+        											  서비스 한다 
+ **webstudy02**
+ 	xml 기반 메타 데이터 (설정 정보) 를 통한 웹어플리케이션을 확인 
+ 	@WebServlet(url-pattern)  애너테이션 역할을 
+ 	web module 2.5 버전에서는  WEB-INF/web.xml 에서 한다 
+ 	
+ 	 - 웹 어플리케이션 설정 정보 ( 메타 데이터 )
+ 	2)	 web.xml :  아래 설정에 의거해 클라이언트는 xmlConfigTest url로
+ 						  요청한다 
+ 	<servlet>
+    <servlet-name>XmlConfigTestServlet</servlet-name>
+    <servlet-class>test.XmlConfigTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>XmlConfigTestServlet</servlet-name>
+    <url-pattern>/xmlConfigTest</url-pattern>
+  </servlet-mapping>
+ 
+ -  서블릿 계층 구조  Servlet Hierarchy 
+    최상위 인터페이스 
+    <<interface>>
+    Servlet   :   init() , service() , destroy() 와 같은 abstract method 가 선언되어 있음 
+    설명 :  모든 자바 웹 프로그램은 Servlet Interface 의 하위 클래스이다. 
+    
+    위의 Servlet interface 를 implements 하는 하위 Abstract class 
+    <<abstract class>>
+    GenericServlet : 프로토콜에 독립적인 서버 프로그램을 위한 클래스 
+    					       일반적인 서버 차원에서 가져야 하는 기능을 자식에게 물려주고 
+    					       프토토콜에 특화된 자식 차원에서 구현해야 하는 service(request,response) 메서는
+    					       abstract method 선언해 구현을 강제한다 ( ex - 피자 서비스의 abstract topping 메서드 ) 
+    					       
+     위의 abstract class 인 GenericServlet 을 상속받는 (extends ) 하위 Abstract class 
+ 	<<abstract class>>
+ 	HttpServlet : Web Program 을 위한 HTTP 프로토콜에 특화된 클래스 
+ 						  웹서비스에 필요한 기능을 자식에게 물려준다 
+ 						  자바 웹 프로그램은 HttpServlet 을 상속받아야 한다
+ 						   ( 모든 Servlet 과 JSP : 예 - Spring 의 DispatcherServlet 또한 HttpServlet 자식임 ) 
+    					  동작원리 ->  부모 GenericServlet의 abstract method 인 service(request,response) 를 
+    					  implements 구현하여 Web Container 가 service 메서드를 호출하면 
+    					  구현한 service 메서드가  Http Request Method 에 따라  개발자가 구현한 
+    					  doGet or doPost 등의 메서드로  dispatch(위임) 하여 실행되고 응답된다 
+    					  
+   - Form	과  Servlet (or JSP) 연동 
+     client
+     <form action="처리할 서버 프로그램 url"  method="get or post">  ----request --->  Web Server -- Web Container -- MyServlet 
+     <input type="text" name="userId">                                                                                                        service 호출 --->  service () --dispatch--> doGet() or doPost()              
+     <button type="submit">검색</button>                                                                                          <--response--
+     				  
+    					  
+    					  
+    					  
+    					  
+    					  
+    					  
+    					  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+****서블릿 공부시 재사용할 코드*****
+
+// 응답시 컨텐트 타입을 설정 , 브라우저에서 지금 응답은 HTML 문서야 라고 
+		// 메세지를 보내기 위함 
+		response.setContentType("text/html;charset=UTF-8");
+		// HTML 을 브라우저로 전송하기 위한 출력 스트림 
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>Servlet Study</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<h3>Hello Servlet</h3>");
+		out.println("</body>");
+		out.println("</html>");
+		out.close();
+
+
+
+
+
+
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		     
