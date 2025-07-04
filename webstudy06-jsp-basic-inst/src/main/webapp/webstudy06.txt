@@ -1,0 +1,422 @@
+**webstudy01**
+HTTP : HyperText Transfer Protocol 
+HTTPS : HTTP Secure -> 보안 http protocol , 암호화된 버전
+
+Web Server : HTTP 프로토콜에 의거해 HTML(html,css,javascript) 문서document 를 서비스하는 서버 
+				      웹 클라이언트인 브라우저에 정적인 컨텐트( + 동적인 컨텐트 )  이상을 서비스 하는 서버 
+WAS : Web Application Server ( Web Server(ex-apache) + Web Container(ex-tomcat) )
+		    데이터베이스 서버 및 다른 서버와 연동하여 
+		    다양한 비즈니스 로직을 처리하고, 
+		    동적인 컨텐트를 클라이언트에게 서비스하는 웹 어플리케이션 서버 
+* Web Container :  서블릿 컨테이너라고도 함 
+	                          -서블릿 라이프 사이클 관리 ( 생성 , 초기화 , 서비스 , 소멸을 제어 ) 
+	                          -요청 처리를 위한 스레드 관리 
+	                          -JSP 를 HttpServlet 하위 서블릿 클래스로 생성 -> 실행  ( JSP 엔진으로서의 역할 )                        
+	                          					   
+		    
+		    
+자바 웹 어플리케이션 개발 환경 설정 
+	1.  apache tomcat/conf/server.xml 에서 port 변경 ( 기본 8080 인데 다른 프로그램(예 - 오라클 ) 과 충돌이
+	   날 수 있으므로 8888 로 변경 ) 
+	   get 요청 방식 한글처리(다국어 처리)를 위해 URIEncoding="utf-8" 을 추가 설정함 
+	2. apache tomcat/conf/context.xml 에서  reloadable="true" 를 설정하여  java class 가 변경되어 다시
+	   컴파일 될 때 톰캣 서버에 자동 배포 되도록 설정 
+	   
+- 웹 클라이언트 브라우저 동작 원리 
+   웹 어플리케이션 서버에 요청request을 하여 응답response 받으면  HTTP Response Message 를 해석한다
+   HTML 을 읽는다 -> HTML을 파싱한다 -> DOM Tree를 생성한다 -> Render 트리가 생성(css 와 결합)  
+   -> 브라우저에 표시된다  	      
+
+ Client Side : html , css , javascript ( Server Side 도 가능 ) 
+ Server Side : Servlet / JSP -> Spring 
+ 
+ **Servlet 기본 개념**
+ Servlet :  java web programming 을 위한 기술 ( Server + Let ) 
+ 			     Web Container( or Servlet Container ) 위에서 개발, 실행됨 
+ 			     MVC 의 Controller 역할을 담당 
+ 			     ( 참고 - MVC 는 Design Pattern (설계 패턴) , SpringMVC 는 기술 명칭 ) 
+ 			     Model :  비즈니스 로직과 데이터 액세스 로직을 담당 ( java ( java beans : Dao, Service..) ) 
+ 			     View : 클라이언트 응답을 전담 ( jsp or thymeleaf or json .. ) 
+ 			     Controller : 제어자 역할 , 요청을 분석하여 Model 과 연동 , 연동 결과를 View 에 공유해 응답하게 함
+ 			     				    ( java 기반 Servlet  ex) Spring or SpringBoot 의 DispatcherServlet )  
+
+- Http Request Method 
+	 get 방식 : 정보 조회용  , url  에 정보가 노출 , 전송 용량에 제한  -> 서블릿의 doGet 메서드가 실행 
+	 post 방식 : 정보 전송용 , url 에 정보가 노출 되지 않는다 , 전송 용량 제한 x 
+	 				   http request message body 부분에 저장되어 전송	 	-> 서블릿의 doPost 메서드가 실행 			 
+ 
+ - 웹 어플리케이션 설정 정보 ( 메타 데이터 )
+   1)  web module version 3 이상 , 현재는 5이상 (가장 높은 버전은 6 ) 
+        에서 지원하는 Annotation 기반 웹 설정 
+        @WebServlet(url-pattern) : 클라이언트에서 해당 서블릿을 실행하기 위한
+        											  url 정보 
+        											  웹 컨테이너 ( or WAS ) 는 서버 시작 시점에
+        											  해당 웹 어플리케이션 설정 정보를 로드하여 
+        											  서비스 한다 
+ **webstudy02**
+ 	xml 기반 메타 데이터 (설정 정보) 를 통한 웹어플리케이션을 확인 
+ 	@WebServlet(url-pattern)  애너테이션 역할을 
+ 	web module 2.5 버전에서는  WEB-INF/web.xml 에서 한다 
+ 	
+ 	 - 웹 어플리케이션 설정 정보 ( 메타 데이터 )
+ 	2)	 web.xml :  아래 설정에 의거해 클라이언트는 xmlConfigTest url로
+ 						  요청한다 
+ 	<servlet>
+    <servlet-name>XmlConfigTestServlet</servlet-name>
+    <servlet-class>test.XmlConfigTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>XmlConfigTestServlet</servlet-name>
+    <url-pattern>/xmlConfigTest</url-pattern>
+  </servlet-mapping>
+ 
+ -  서블릿 계층 구조  Servlet Hierarchy 
+    최상위 인터페이스 
+    <<interface>>
+    Servlet   :   init() , service() , destroy() 와 같은 abstract method 가 선언되어 있음 
+    설명 :  모든 자바 웹 프로그램은 Servlet Interface 의 하위 클래스이다. 
+    
+    위의 Servlet interface 를 implements 하는 하위 Abstract class 
+    <<abstract class>>
+    GenericServlet : 프로토콜에 독립적인 서버 프로그램을 위한 클래스 
+    					       일반적인 서버 차원에서 가져야 하는 기능을 자식에게 물려주고 
+    					       프토토콜에 특화된 자식 차원에서 구현해야 하는 service(request,response) 메서는
+    					       abstract method 선언해 구현을 강제한다 ( ex - 피자 서비스의 abstract topping 메서드 ) 
+    					       
+     위의 abstract class 인 GenericServlet 을 상속받는 (extends ) 하위 Abstract class 
+ 	<<abstract class>>
+ 	HttpServlet : Web Program 을 위한 HTTP 프로토콜에 특화된 클래스 
+ 						  웹서비스에 필요한 기능을 자식에게 물려준다 
+ 						  자바 웹 프로그램은 HttpServlet 을 상속받아야 한다
+ 						   ( 모든 Servlet 과 JSP : 예 - Spring 의 DispatcherServlet 또한 HttpServlet 자식임 ) 
+    					  동작원리 ->  부모 GenericServlet의 abstract method 인 service(request,response) 를 
+    					  implements 구현하여 Web Container 가 service 메서드를 호출하면 
+    					  구현한 service 메서드가  Http Request Method 에 따라  개발자가 구현한 
+    					  doGet or doPost 등의 메서드로  dispatch(위임) 하여 실행되고 응답된다 
+    					  
+   - Form	과  Servlet (or JSP) 연동 
+     client
+     <form action="처리할 서버 프로그램 url"  method="get or post">  ----request --->  Web Server -- Web Container -- MyServlet 
+     <input type="text" name="userId">                                                                                                        service 호출 --->  service () --dispatch--> doGet() or doPost()              
+     <button type="submit">검색</button>                                                                                          <--response--
+     				  
+   - Http Status Code ( 상태 코드 ) 
+    : 클라이언트(브라우저) 와 서버(WAS) 가 서로의 상태를 이해하는 
+      약속 , HTTP 상태 코드는 세자리 숫자로 구성 
+      대표적인 Status code 상태 코드 
+      200 OK : 요청이 성공적으로 처리됨 . 가장 일반적인 성공 코드 
+      404 Not Found : 요청한 리소드를 서버에서 찾을 수 없습닌다  					  
+     405	 Method Not Allowed : 요청에 사용된 HTTP 메서드(get, post 등 )가
+     해당 리소스(서버프로그램)에 대해 허용되지 않음을 의미 
+     -> 만약 post 방식으로 클라이언트가 요청했는 데  doGet() 을 구현한 경우
+      500 Internal Server Error : 서버에 예상하지 못한 오류가 발생하여 
+      요청을 처리할 수 없음을 나타냅니다. 가장 일반적인 서버 오류.       			  
+    					  
+  ***서블릿 아키텍쳐의 핵심 특징***
+    자바 웹 응용 프로그램 개발자 -  표준 서블릿 API  제정 -  WAS Vendor 
+    						인터페이스 기반 개발                               인터페이스를 구현 
+    						
+      1. 표준화된 서블릿 API  ( 인터페이스 기반 개발 ) 
+  	 자바 웹 응용프로그램 개발자는 Servlet API ( Servlet , ServletRequest, ServletResponse interface 등)
+  	 - Jakarta EE( Java EE ) 표준으로 정의된 인터페이스 기반으로 일관되게 웹 어플리케이션을 개발합니다. 
+  	 이 표준화된 서블릿 API 덕분에 특정 WAS 제품에 종속되지 않고 
+  	 일관된 방식으로 웹 어플리케이션을 구현할 수 있습니다. 
+  2. WAS( Web Application Server ) 의 구현 및 추상화 
+      Apache Tomcat , JBoss , WebLogic , Jetty 등과 같은 WAS 제품들은 
+      표준화된 Servlet API 인터페이스들을 각자의 방식으로 최적화 되게 구현합니다. 
+      자신의 구현체를 업그레이드를 하여도 서블릿 표준 인터페이스( API ) 로 응용프로그램 개발자들은 개발하므로 
+      업그레이드가 용이합니다 즉 유지보수성이 높습니다. 
+ 3.  벤더 독립성 및 이식성 
+      이러한 서블릿 웹 아키텍쳐 구조 덕분에  특정 WAS에서 개발된 웹 어플리케이션은 
+      다른 WAS 에서도 큰 수정 없이 동작할 수 있는 높은 이식성(Portability)을 가집니다      	   	
+      기업은 특정 벤더에 종속되지 않고, 필요에 따라 다양한 WAS 제품을 선택하거나 
+      변경할 수 있는 유연성을 확보할 수 있습니다				  
+  4.  웹 응용 프로그램 개발 생산성 향상 
+  	  다양한 WAS 제품군들과 관계없이 표준화된 방법으로 웹 개발이 가능 
+  	  
+  **서블릿 라이프 사이클 Servlet LifeCycle**
+  
+  - IOC 디자인 패턴 : Spring 에서 자세히 다룰 예정 	    					  
+  								 Inversion Of Control   ( 제어의 역전 )  
+  								 -> 객체가 필요로 하는 다른 객체(의존성) 을 생성해서 사용하는 것이 아니라 
+  								     외부(컨테이너, 프레임워크) 등에서 객체를 대신 생성하여 필요할 때 주입해주는 방식을 말함   					  
+    					  
+    웹 컨테이너가  서블릿 객체의 클래스 로딩 , 객체 생성 , 초기화(init()) , 서비스 실행 (service()) , 소멸 ( destroy()) 를 
+    담당함 
+    
+     서블릿(자바 웹 프로그램)은 개발자가 직접 객체를 생성하거나 소멸시키지 않고 
+     웹 컨테이너에 의해 그 생명 주기가 전적으로 관리됩니다 ( IOC )  
+ 
+    서블릿 생명주기 Servlet LifeCycle 
+    init() :  스타벅스 매장 개업 준비 ( 인테리어 , 직원 교육, 메뉴 준비 )
+    service() : 손님에게 커피 서비스 ( 주문받고 요리하고 손님 부르고.. ) 
+    destroy() :  매장 폐업 ( 정리, 직원 정산 , 임대 반납 ) 
+    - 참고 :  Spring 의 Bean Lifecycle 에 동일한 개념이 적용 
+    	         @PostConstruct   ,  @PreDestroy 가  서블릿의 init() 과 destroy() 와 
+    	         같은 역할을 함 
+    
+     - Servlet Life Cycle 상세 분석 
+      1단계 :  서블릿 클래스 로딩 및 객체생성 ( class loading & Instantiation ) 
+                  클라이언트 요청 -> Web Container 가 해당 서블릿 클래스를 로딩 
+                  								-> 인스턴스 생성 ( 단 한번 생성 ->  Singleton Pattern  )
+      2단계 : 초기화 단계 ( Initialization ) 
+                 public void init() or public void init(ServletConfig config) 
+                 인스턴스 생성 직후 - 단 한번 실행 
+                 서블릿 서비스 전 필요한 초기 작업 수행 ( 설정 정보, 파일 , DB 로딩 등 ) 
+      3단계 :  서비스 (Service) 
+      				protected void service(HttpServletRequest request,HttpServletResponse response){
+      				}
+      				---dispatch(위임) --> Http Request Method 에 따라 -> doGet(request,response) or doPost(request,response) 등
+      				매 요청시 실행 
+      				멀티 스레드 환경에서 동시 실행 가능 
+      				실제 웹 서비스를 하는 메서드 (로그인, 구매, 검색 등 ) 
+       4단계 : 소멸 ( Destruction ) 
+       			   public void destroy(){}
+       			   서블릿 언로드 또는  WAS(Web Container) 종료 직전 단 한번 실행 ( 캐시 정리 , 파일 닫기, DB 연결 해제 등 ) 
+       			   
+         loadOnStartup = 1
+	 	웹 어플리케이션이 실행이 시작되는 시점에 가장 우선적으로
+	 	위 옵션이 명시된 서블릿을 초기화합니다. 
+	 	서블릿 라이프 사이클 구조상 클라이언트의 첫 요청 시점에 
+	 	서블릿이 초기화 작업을 하므로 
+	 	웹 어플리케이션에서 중요한 역할을 하는 서블릿 ( 초기화 작업이 많은 서블릿 포함)
+	 	은 위 옵션이 유용합니다.                     								      
+ 
+ **ServletConfig &  ServletContext**
+-  ServletConfig 
+   서블릿 설정 정보 객체 
+   서블릿 객체 당 하나 생성 
+   ServletContext 의 주소값을 저장하고 있음 
+   웹컨테이너에 의해 서블릿 초기화 init(ServletConfig config) 시점에 호출되어
+   ServletConfig 객체가 전달 
+   구체적으로 어떤 설정 정보인가?  예 )  Spring MVC 에서 DispatcherServlet 이
+   초기화 되는 시점에  init 메서드를 웹컨테이너가 호출하여 
+   Spring 설정정보가 저장된 ServletConfig 객체를  전달된다
+ 
+ - ServletContext
+ 웹어플리케이션 당 하나 생성 
+ 웹어플리케이션 내 모든 서블릿과 jsp 들이 공유하여 사용할 수 있는 객체 
+ Web Application 이 시작 시점에 ServletContext 객체 생성되고 
+ Web Application 소멸 직전에 ServletContext 객체는 소멸된다 
+ 구체적으로 어떤 곳에 사용되는가 ?  웹어플리케이션 전체 설정 관리 
+ 														 각각의 서블릿(jsp 포함) 간 데이터 공유 지원 
+ 														 
+ ServletConfig  와 ServletContext 
+ 구분 			ServletConfig              ServletContext
+            		개별 서블릿당 하나       웹 어플리케이션 당 하나 
+            		개별 서블릿 전용           웹 어플리케이션 내의 웹프로그램( Servlet or JSP ..)
+            		@ 애너테이션 또는        web.xml 
+            		web.xml 
+ Spring 과 연관성   개별 Bean 설정      ApplicationContext            
+            
+ **ServletContextListener**
+ : Application LifeCycle Listener
+  웹  어플리케이션 시작 시점과 종료 시점의 이벤트를 감지하여 
+  시작 시점에 필요한 초기화 작업( 예 - 보안 ) 과   contextInitialized() 
+  종료 시점에 필요한 작업(예 - 백업, 로깅 ) 을 정의해 실행시킬 수 있다  contextDestroyed() 
+  
+  
+  **webstudy 05   Cookie 와 Session**
+ 
+ Cookie 와 Session 이 필요한 이유 ? 
+ HTTP (HyperText Transfer Protocol ) 는 Stateless  속성을 가진다 
+ Stateless 란 서버의 서비스를 받는 사용자 정보를 유지 하지 않는 속성 
+ 사용자 정보를 필요시에 유지하기 위한 기술이 Cookie와 Session 이다 
+ 예 )  Sesssion 과 Cookie가 필요한 사례 
+ 	    인증 기반 서비스 
+ 	    쇼핑몰 장바구니 
+ 	    주문 또는 결제 등 
+ 	    
+세션 관리 : 사용자 정보를 일정 조건동안 유지 
+상태정보 : 사용자의 자격 또는 의사를 저장하고 있는 정보 
+
+사용자 상태 정보를 유지하는 방식 중 
+
+                   Cookie  	            Session 
+저장 위치     클라이언트        서버 
+보안성          낮음					높음(서버에서 관리하므로)
+데이터타입   문자열로 제한   타입의 제한없음 
+저장용량      제한적(4k)         제한없음(서버 상황에 따라)
+생명주기      설정(유효기간)   서버 메모리 상황에 따라 
+네트워크     매 요청시 전송    최초 1회만 ID 를 전송 
+ 
+ 1. Cookie 
+ 	클라이언트 측 상태 정보 저장 
+ 	저장 용량 제한 ( 4kb ) -> 작은 상태 정보 이용 
+ 	
+ 	Servlet , jsp , Spring Controller 
+ 	Cookie 생성시 유효시간 설정 
+ 	유효시간을 설정하지 않으면 해당 브라우저 실행시까지만 유효 
+ 	
+    step1. 클라이언트가 접속하면 SetCookieServlet이 쿠키 생성해 응답시에 전달하여 
+              클라이언트 측에 저장시킴 
+              											Web Container
+     client browser -- request -- >      SetCookieServlet
+     													 Cookie 생성 ( name, value ) 
+     													 cookie.setMaxAge(30); // 30초간 유효 
+     													 response.addCookie(cookie);
+     						<--response--
+     						
+     step2.  클라이언트가 접속하면     GetCookieServlet 이 실행 
+     													request.getCookies() :  Cookie[]
+     													cookie[i].getName() , cookie[i].getValue() 를 이용해
+     													쿠키 정보를 출력 
+     													
+     2. Session ( HttpSession ) 
+         서버 측에 사용자 상태 정보를 저장 
+         저장 용량 및 데이터 타입 제한 없음 
+         로그인 , 로그아웃시 주로 사용된다 
+         
+         세션 유효시간 
+         1. WAS 에 설정된 지정 유효시간 내 재접속이 없으면 세션 만료 
+            ( tomcat : apache-tomcat-10.1.42\conf\web.xml 에 유효시간 설정 ) 
+         2. 브라우저 종료시 세션 만료 
+         3. 로그아웃 실행 세션 만료 
+         
+         세션 관련 주요 메서드 
+         -request.getSession() or request.getSession(true)
+         기존 세션이 있으면 기존 세션을 반환하고 
+         없으면 새로 생성해서 반환
+        
+        - request.getSession(false)
+         기존 세션이 있으면 기존 세션을 반환하고 없으면 null 반환 
+           
+        - session.setAttribute(name,value)
+        세션에 저장할 정보를 name 과 value 쌍으로 저장 
+        
+        -session.getAttribute(name):Object 
+        세션에 저장된 정보를 name으로 찾으면 value object를 반환 
+        
+        -session.invalidate();  
+        세션을 무효화 
+         
+     - Session  의 동작원리 : 세션은 내부적으로 jsessionid 라는 쿠키를 사용 
+     
+     													LoginServlet
+     client browser -- request --> 		request.getSession() : 세션 생성 
+     													: getSession() 메서드 내부에서
+     													  client 가 전달한 cookie 정보 중 jsessionid cookie 를 확인해서
+     													  존재하면 세션이 있는 것으로 판단해 기존  세션을 리턴하고
+     													  없으면 새로 생성 
+     													 
+     													 request.getSession(false) -> 클라이언트가 보낸 
+     													 HttpRequest Message 중에 cookie 를 확인해서 
+     													 jsessionid 가 존재하지 않으면 null 을 반환 
+     													 존재하면 기존 세션 반환 
+     													  
+     JSP 와 같은 경우  request.getSession() 이 기본으로 내장되어 있음 
+     정확하게 인증 여부를 판단할 때는 session 유무와 로그인 검증시 저장한 (setAttribute(name) ) 
+     인증와 함께 비교하는 것을 권장한다  if( 세션이 존재하고 인증 정보가 있으면 로그인 되어 있다 ) {} 
+     
+     
+     **JSP**
+     JSP : Java Server Page
+     		  서버 측에서 웹 페이지를 동적으로 생성하는 기술 ( Template Engine ) 
+     		  HTML 에 자바 코드를 삽입하는 형식으로 개발 
+     		  -> 동적인 웹 페이지를 구현하는 데 적합 
+     		  Template Engine ( 서버 사이드 웹페이지 생성 기술 ) -> jsp , thymeleaf 등 
+     		  MVC의 View 역할을 담당 
+     		  
+     JSP 기본 문법 
+     1) JSP 주석 <%--      --%>
+     2) Scriptlet 스크립틀릿 <%  %>  java code 삽입시 사용 , service 메서드 내 코드로 삽입
+     3) Expression  출력   <%=  %>  out.print() 로 생성 , 출력시 사용 
+     4) Declaration 선언 <%! %> 멤버 변수 또는 메서드를 정의할 때 사용 
+     5)  Directive 지시   <@%   %>	웹컨테이너에게 현 페이지 메타 정보를 기술 
+     												( import , encoding , errorPage ) 
+     												
+     JSP LifeCycle :   JSP는 HttpServlet의 자식 클래스로 생성되므로  서블릿 라이프 사이클과 동일 
+     											WAS(Web Container)
+     client browser -- request-->   is loaded? ---no--->   hello.jsp -- hello_jsp.java --> hello_jsp.class
+     												 |																			|
+     												yes																	  class loading 및 객체 생성 
+     									              |                                                                           |
+     									              |                                                                        init() -> jspInit()
+     									              |                                                                          |
+     									               ---------------------------------------->                  service() -> jspService()
+     									                                                                                           																					  																	destroy() -->	jspDestroy() 
+     												
+     												
+     												
+     												
+     												
+     												
+     												
+     												
+     												
+     												
+     												
+     												
+     												 	  
+     		  
+     
+     
+     
+     													
+     													
+     													
+     													
+     													
+     													
+     													
+     													  						
+     						
+     						
+     						
+     						
+     						
+     						
+     						
+     													       	
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+****서블릿 공부시 재사용할 코드*****
+
+// 응답시 컨텐트 타입을 설정 , 브라우저에서 지금 응답은 HTML 문서야 라고 
+		// 메세지를 보내기 위함 
+		response.setContentType("text/html;charset=UTF-8");
+		// HTML 을 브라우저로 전송하기 위한 출력 스트림 
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>Servlet Study</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<h3>Hello Servlet</h3>");
+		out.println("</body>");
+		out.println("</html>");
+		out.close();
+
+
+
+
+
+
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		     
