@@ -5,7 +5,7 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   <context-param>
-  	<param-name>securityConfigInfo</param-name>
-  	<param-value>/WEB-INF/spring-security.xml</param-value>
+    <param-name>securityConfigInfo</param-name>
+    <param-value>/WEB-INF/spring-security.xml</param-value>
   </context-param>
 </web-app>

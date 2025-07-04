@@ -201,8 +201,21 @@ WAS : Web Application Server ( Web Server(ex-apache) + Web Container(ex-tomcat) 
  구체적으로 어떤 곳에 사용되는가 ?  웹어플리케이션 전체 설정 관리 
  														 각각의 서블릿(jsp 포함) 간 데이터 공유 지원 
  														 
- 
- 
+ ServletConfig  와 ServletContext 
+ 구분 			ServletConfig              ServletContext
+            		개별 서블릿당 하나       웹 어플리케이션 당 하나 
+            		개별 서블릿 전용           웹 어플리케이션 내의 웹프로그램( Servlet or JSP ..)
+            		@ 애너테이션 또는        web.xml 
+            		web.xml 
+ Spring 과 연관성   개별 Bean 설정      ApplicationContext            
+            
+ **ServletContextListener**
+ : Application LifeCycle Listener
+  웹  어플리케이션 시작 시점과 종료 시점의 이벤트를 감지하여 
+  시작 시점에 필요한 초기화 작업( 예 - 보안 ) 과   contextInitialized() 
+  종료 시점에 필요한 작업(예 - 백업, 로깅 ) 을 정의해 실행시킬 수 있다  contextDestroyed() 
+  
+  
  
  
  
