@@ -348,9 +348,19 @@ WAS : Web Application Server ( Web Server(ex-apache) + Web Container(ex-tomcat) 
            window를 제어 ) ..  alert() 은 window.alert() 중 window가 생략된 것
            window.location , window.onload  등 ..  		   
  		       												
+ **Model 1 Architecture**
+ Software Architecture : 소프트웨어 설계양식 
+ ->  소프트웨어의 전체 구조를 표현하며 소프트웨어 구성요소(component) 사이의 
+     관계를 정의한다     												
      												
-     												
-     												
+    초기 웹 개발 방식 ( 1990 년대 후반 ~ 2000년대 초반 ) 
+      jsp   <---> Database 
+      
+     Model1 Architecture ( 2000년대 초반 ~  중반 ) 
+     jsp  <--->  java beans( Dao , Service 등 ) <--->  Database 
+     
+     이후 
+     Model2 Architecture ( 2000년대 초중반 ~ )   												
      												
      												
      												
@@ -398,22 +408,6 @@ WAS : Web Application Server ( Web Server(ex-apache) + Web Container(ex-tomcat) 
  
  
 
-****서블릿 공부시 재사용할 코드*****
-
-// 응답시 컨텐트 타입을 설정 , 브라우저에서 지금 응답은 HTML 문서야 라고 
-		// 메세지를 보내기 위함 
-		response.setContentType("text/html;charset=UTF-8");
-		// HTML 을 브라우저로 전송하기 위한 출력 스트림 
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<title>Servlet Study</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("<h3>Hello Servlet</h3>");
-		out.println("</body>");
-		out.println("</html>");
-		out.close();
 
 
 
