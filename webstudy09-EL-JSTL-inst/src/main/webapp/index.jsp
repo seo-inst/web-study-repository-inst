@@ -14,6 +14,7 @@
 <a href="Test01Servlet?id=java">EL Test1</a><br><br>
 <a href="Test02Servlet?nick=아이유&age=33">JSTL if Test2</a><br><br>
 <a href="Test03Servlet?id=java">JSTL choose Test3</a><br><br>
+<a href="Test04Servlet?address=종로">JSTL forEach Test4</a>
 </body>
 </html>
 
