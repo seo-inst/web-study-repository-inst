@@ -398,8 +398,32 @@ WAS : Web Application Server ( Web Server(ex-apache) + Web Container(ex-tomcat) 
                  처리하기 가장 최적화 되어 있음                 			    		
     		
       **Controller에서 View로 제어를 이동하는 방식**
-      1) forward 방식 
-      2) redirect 방식 
+      1) forward 방식 :  웹 컨테이너 상에서 이동되는 방식, 
+                                   request 와 response 가 유지 ( 재요청시 재동작 되는 특성 ) 
+      							  정보 조회 용도에 적합 
+      2) redirect 방식 : 클라이언트에게 응답 view url 을 지정하는 방식 
+      							 기존 요청에 대한 응답으로 새로운 페이지 url 을 명시하여 결과를 보는 방식
+      							 기존 request 와 response는 유지 되지 않음 
+      							 재 동작이 되지 않아야 하는 작업에 적합 ( 회원가입, 로그인, 상품등록 등 .. ) 
+      -----------------------
+      상세 설명 
+      request.getRequestDispatcher(url).forward(request,response)
+      response.sendRedirect(url)
+      
+      특징                   
+      forward 					        redirect
+      서버 내부에서 동작         클라이언트 브라우저가 동작 
+      url 변경 x                       url 변경 o 
+      요청객체 유지 0				요청 객체 유지 x    
+      웹 컨텍스트 경로 제외     웹 컨텍스트 경로 포함 절대/상대 경로 
+      한 내부 경로 ( / ) 
+      중복 동작(or 재동작) 가능    중복동작방지 
+      브라우저에서는 					재요청으로 인식 
+      단일요청/응답으로 인식  
+      
+      
+      
+      
       
       
       
