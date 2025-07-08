@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>step4-jstl-forEach</title>
+<title>step5-jstl-forEach-member-list</title>
     <style>
         table {
             width: 100%;
@@ -28,11 +28,12 @@
 			items : 배열 또는 컬렉션 
 			var : 요소를 담을 임시변수 
  --%>
-<h3>step4 jstl forEach</h3>
-<c:forEach items="${foods}"  var="food">
+<h3>step5 jstl forEach</h3>
+<%-- <c:forEach items="${foods}"  var="food">
 	${food}<br> 
-</c:forEach>
-<hr>
+</c:forEach> --%>
+<%--  종로에 사는 회원명단 과 같이 el 로 동적으로 표현해본다   --%>
+<h4> 에 사는 회원명단</h4>
 <table>
 	<thead>
 		<tr>
