@@ -33,7 +33,7 @@
 	${food}<br> 
 </c:forEach> --%>
 <%--  종로에 사는 회원명단 과 같이 el 로 동적으로 표현해본다   --%>
-<h4> 에 사는 회원명단</h4>
+<h4>${param.address} 에 사는 회원명단</h4>
 <table>
 	<thead>
 		<tr>
