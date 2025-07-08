@@ -10,9 +10,17 @@ import java.util.ArrayList;
 import common.DbConfig;
 
 // Dao : Data Access Object  데이터 제어 로직을 담당하는 객체 
+// Singleton Pattern : 시스템 상에 단 하나 객체 생성해서 사용하는 설계 패턴 
 public class MemberDao {
-	public MemberDao() throws ClassNotFoundException {
+	private static MemberDao instance;
+	private MemberDao() throws ClassNotFoundException {
 		Class.forName(DbConfig.DRIVER);
+	}
+	// 지연된 로딩 : Lazy Loading 
+	public static MemberDao getInstance() throws ClassNotFoundException {
+		if(instance == null)
+			instance = new MemberDao();
+		return instance;
 	}
 
 	/*

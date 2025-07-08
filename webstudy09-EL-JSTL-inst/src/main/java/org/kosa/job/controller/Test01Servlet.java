@@ -22,12 +22,12 @@ public class Test01Servlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 		String id = request.getParameter("id");
-		MemberDao dao = new MemberDao();
+		MemberDao dao = MemberDao.getInstance();
 		MemberVo vo = dao.findMemberById(id);
 		request.setAttribute("member", vo);
 		// forward 방식이므로 request, response 유지 
 		request.getRequestDispatcher("step1-el.jsp").forward(request, response);
-		}catch (Exception e) {
+		}catch (Exception e) { // 예외 처리 로직 
 			e.printStackTrace();
 		}
 	}

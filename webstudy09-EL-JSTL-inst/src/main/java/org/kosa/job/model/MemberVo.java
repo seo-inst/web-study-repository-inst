@@ -34,6 +34,7 @@ public class MemberVo {
 		this.password = password;
 	}
 	public String getName() {
+		System.out.println("getName()");
 		return name;
 	}
 	public void setName(String name) {

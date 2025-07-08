@@ -13,7 +13,8 @@
 			EL 을 이용하면 간결하게 표현이 가능하다 
      --%>
 아이디 : ${param.id}  <br>
-이름 : ${requestScope.member.name}
+이름 : ${requestScope.member.name} <br>
+주소 : ${member.address}
 </body>
 </html>
 
