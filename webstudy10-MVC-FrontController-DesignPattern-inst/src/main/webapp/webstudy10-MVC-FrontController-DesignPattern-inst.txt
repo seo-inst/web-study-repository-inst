@@ -539,8 +539,22 @@ JSP 페이지에서 JSTL 사용 선언부
       registerCustomer(request,response){
       }
       
+      Ver2 의 개선점 : 메서드 별로 분리, 가독성이 향상 
+      							하지만 여전히 한 클래스에 모든 로직 있어서 
+      							업무 추가시 클래스가 비대해지고 관리가 어려움 
       
-    
+      
+      FrontController Ver3 : 클래스 분리 
+      
+      // 각 요청 처리 기능별 클래스를 분리 
+      FrontControllerServletVer3				  					class	FindCustomerController   , class   RegisterCustomerController 
+      doDispatch(request,response){				
+      		if(){
+      				FindCustomerController controller = new FindCustomerController(); 
+      		}else if(){
+      				RegisterCustomerController controller = new RegisterCustomerController(); 
+      		}
+      }
     
     
     
