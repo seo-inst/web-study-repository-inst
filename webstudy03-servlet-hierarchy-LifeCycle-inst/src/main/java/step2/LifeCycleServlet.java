@@ -47,3 +47,10 @@ public class LifeCycleServlet extends GenericServlet {
 		System.out.println(getClass()+" service()");
 	}
 }
+
+
+
+
+
+
+
