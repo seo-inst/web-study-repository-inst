@@ -25,8 +25,16 @@ public class FrontControllerServletVer4 extends HttpServlet {
 			Controller controller = null;
 			if (command.equals("findbyid")) {
 				controller = new FindCustomerByIdController();
+			}else if(command.equals("registerCustomer")) {
+				controller = new RegisterCustomerController();
 			}
+			// Command Pattern 적용 (캡슐화로 인해) 으로 표준화된 단일한 방식으로 
+			// 다양한 컨트롤러들을 실행시켜 요청을 처리할 수 있다 
 			String path = controller.handleRequest(request, response);
+			// Controller 영역에서 View 로 제어를 이동하는 방식 : forward 와 redirect 
+			// forward 이동 방식 : request와 response가 유지되지면서 이동하는 방식
+			//                                웹 컨테이너 상에서 이동하여 응답되는 방식 , 정보 조회용도 
+			// 특징 : 기존 request가 유지되므로 새로고침시 재동작되는 특성 -> 등록 등 재동작되면 안되는 업무는 적합x 
 			request.getRequestDispatcher(path).forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
