@@ -88,6 +88,34 @@ public class MemberDao {
 		}
 		return list;
 	}
+	/**
+	 *  로그인 성공하면 인증 정보로 활용될 회원 객체를 반환하고<br>
+	 *  로그인 실패하면 null 을 반환하는 메서드 
+	 * @param id
+	 * @param password
+	 * @return 인증객체 
+	 * @throws SQLException
+	 */
+	public MemberVo login(String id,String password) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVo memberVo=null;
+		try {
+			con=dataSource.getConnection();
+			String sql = "select name,address from member where id = ? and password = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberVo = new MemberVo(id,null,rs.getString("name"),rs.getString("address"));
+			}
+		}finally {
+			this.closeAll(rs, pstmt, con);
+		}
+		return memberVo;
+	}
 }
 
 

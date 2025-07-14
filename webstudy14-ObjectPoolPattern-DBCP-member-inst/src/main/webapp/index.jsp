@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="jakarta.tags.core" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,11 +36,35 @@
 <button type="submit">회원검색</button>
 </form>
 <br><br>
-<form method="post" action="Login">
-<input type="text" name="id" placeholder="아이디" required="required"><br>
-<input type="password" name="password" placeholder="패스워드" required="required"><br>
-<button type="submit">로그인</button>
-</form>
+<%--   
+       비 로그인 상태이면 아래 로그인 폼을 제공한다    
+--%>
+<c:choose>
+	<c:when test="${sessionScope.mvo==null}">
+	<form method="post" action="front">
+	<input type="hidden" name="command" value="Login">
+	<input type="text" name="id" placeholder="아이디" required="required"><br>
+	<input type="password" name="password" placeholder="패스워드" required="required"><br>
+	<button type="submit">로그인</button>
+	</form>
+	</c:when>
+	<c:otherwise>
+	${sessionScope.mvo.name} 님 로그인 상태입니다 <br><br>
+	<%--
+						F.C  -- H.M -- Controlller
+													|
+											  LogoutController
+											  세션 체크 , 기존 세션 존재하면  session invalidate() 로 세션 무효화 후 
+											  리다이렉트  index.jsp 		
+	 --%>
+	<form method="post" action="front">
+	<input type="hidden" name="command" value="Logout">
+		<button type="submit">로그아웃</button>
+	</form>
+	</c:otherwise>
+</c:choose>
+
+
 <%--
 			jstl  library 와 선언부 확인, 없으면 등록하고 
 			choose ~ when ~ otherwise 를 이용 : sessionScope.mvo 의 존재 유무로 
