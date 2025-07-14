@@ -34,7 +34,22 @@
 <input type="text" name="address" placeholder="주소" required="required">
 <button type="submit">회원검색</button>
 </form>
-
+<br><br>
+<form method="post" action="Login">
+<input type="text" name="id" placeholder="아이디" required="required"><br>
+<input type="password" name="password" placeholder="패스워드" required="required"><br>
+<button type="submit">로그인</button>
+</form>
+<%--
+			jstl  library 와 선언부 확인, 없으면 등록하고 
+			choose ~ when ~ otherwise 를 이용 : sessionScope.mvo 의 존재 유무로 
+			비교 후 로그인 상태가 아니면 위의 로그인 폼을 보여주고
+			로그인 상태이면 아래의 예처럼 사용자 정보와 로그아웃 버튼을 제공한다 
+			
+			손흥민님 로그인 상태입니다
+			<form> ....
+			<button>로그아웃</button> 
+ --%>
 <br><br><br>
 <img src="front-all.png" width="70%">
 </body>
